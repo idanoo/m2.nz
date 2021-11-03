@@ -1,9 +1,12 @@
 baseURL = 'https://m2.nz/'
 languageCode = 'en-us'
-title = 'Daniel Mason'
+title = 'm2.nz'
 
 theme = "m10c"
 
+[markup.goldmark.renderer]
+  unsafe = true
+  
 [menu]
   [[menu.main]]
     identifier = "home"
@@ -15,11 +18,11 @@ theme = "m10c"
     name = "Tags"
     url = "/tags/"
     weight = 2
-#  [[menu.main]]
-#    identifier = "about"
-#    name = "About"
-#    url = "/about/"
-#    weight = 3
+  [[menu.main]]
+    identifier = "about"
+    name = "CV"
+    url = "/cv/"
+    weight = 3
 
 [params]
   author = "Daniel Mason"
@@ -29,13 +32,25 @@ theme = "m10c"
   favicon = "/favicon.ico"
 
   [[params.social]]
-    icon = "gitlab"
+    icon = "git-pull-request"
     name = "GitLab"
-    url = "https://gitlab.com/idanoo"
+    url = "https://git.m2.nz/idanoo"
+  [[params.social]]
+    icon = "send"
+    name = "Mastodon"
+    url = "https://mastodon.nz/@idanoo"
+  [[params.social]]
+    icon = "camera"
+    name = "Pixelfed"
+    url = "https://pixelfed.nz/idanoo"
+  [[params.social]]
+    icon = "message-square"
+    name = "Matrix"
+    url = "https://matrix.to/#/@idanoo:mtrx.nz"
 
-  [params.style]
-    darkestColor = "#242930"
-    darkColor = "#353b43"
-    lightColor = "#afbac4"
-    lightestColor = "#ffffff"
-    primaryColor = "#57cc8a"
+[params.style]
+  darkestColor = "#242930"
+  darkColor = "#353b43"
+  lightColor = "#afbac4"
+  lightestColor = "#ffffff"
+  primaryColor = "#57cc8a"
