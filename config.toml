@@ -1,3 +1,25 @@
-baseURL = 'http://example.org/'
+baseURL = 'https://m2.nz/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Daniel Mason'
+
+theme = "m10c"
+
+[[params]]
+  author = "Daniel Mason"
+  description = "Personal blog"
+  avatar = ""
+  menu_item_separator = " | "
+  favicon = "/favicon.ico"
+
+[[params.social]]
+  icon = "gitlab"
+  name = "GitLab"
+  url = "https://gitlab.com/idanoo"
+
+
+[params.style]
+  darkestColor = "#242930"
+  darkColor = "#353b43"
+  lightColor = "#afbac4"
+  lightestColor = "#ffffff"
+  primaryColor = "#57cc8a"
