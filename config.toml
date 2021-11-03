@@ -1,7 +1,6 @@
 baseURL = 'https://m2.nz/'
 languageCode = 'en-us'
-title = 'm2.nz'
-
+title = 'Daniel Mason'
 theme = "m10c"
 
 [markup.goldmark.renderer]
