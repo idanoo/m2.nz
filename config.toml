@@ -26,7 +26,7 @@ theme = "m10c"
 [params]
   author = "Daniel Mason"
   description = "Personal blog"
-  avatar = "profile.png"
+  avatar = "bitmoji.jpg"
   menu_item_separator = " | "
   favicon = "/favicon.ico"
 
