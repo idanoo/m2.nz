@@ -33,7 +33,7 @@ theme = "m10c"
   [[params.social]]
     icon = "git-pull-request"
     name = "GitLab"
-    url = "https://git.m2.nz/idanoo"
+    url = "https://gitlab.com/idanoo"
   [[params.social]]
     icon = "send"
     name = "Mastodon"
