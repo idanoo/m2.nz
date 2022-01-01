@@ -31,7 +31,7 @@ theme = "m10c"
   favicon = "/favicon.ico"
 
   [[params.social]]
-    icon = "git-pull-request"
+    icon = "gitlab"
     name = "GitLab"
     url = "https://gitlab.com/idanoo"
   [[params.social]]
