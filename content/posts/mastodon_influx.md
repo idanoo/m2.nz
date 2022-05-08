@@ -13,7 +13,7 @@ I started hosting [mastodon.nz](https://mastodon.nz) around January 2020 on my h
 
 Mid 2021 a good friend of mine offered a great deal on some actual hosting in a datacenter. Now we had 8vCPU + 8GB RAM to play with, time to migrate everything. After a few hours of mastering `rsync` and `pg_dump` - it was done, we were set for awhile. At least that's what I thought..
 
-April 2022 brought a nice little surprise - I started getting notifications of new users joining [mastodon.nz](https://mastodon.nz). Confused I started to look at what has changed.. Didn't take long to realise this was only the beggining. I had to allocate more resource to the container to account for the higher throughput.
+April 2022 brought a nice little surprise - I started getting notifications of new users joining [mastodon.nz](https://mastodon.nz). Confused I started to look at what has changed.. Didn't take long to realise this was only the beginning. I had to allocate more resource to the container to account for the higher throughput.
 
 You can see in the image below it started to approach the allocated 3GB - I bumped it up to 4GB, then shortly after up to 6GB. That's as much as I could give it without moving to bigger hardware.
 
@@ -31,4 +31,4 @@ It was about at this time I figured we probably needed to look into the future o
 
 After about 6 hours of configuring and installing everything required, I was ready to make a trip to a local datacenter to rack it (Thanks to previously mentioned friend!) and start the painful migration.
 
-More to come soon..
+More to come soon.
