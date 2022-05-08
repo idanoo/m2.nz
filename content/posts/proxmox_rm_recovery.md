@@ -1,9 +1,9 @@
-+++
-title = "Recovering from a root 'rm' and why you need backups"
-tags = ["recovery", "backup", "proxmox"]
-date = "2021-02-06"
-description = "test"
-+++
+---
+title: "Recovering from a root 'rm' and why you need backups"
+tags: ["recovery", "backup", "proxmox"]
+date: "2021-02-06"
+featuredimagepreview: "/proxmox.jpg"
+---
 
 Last week I was finally getting around to fixing my backup tooling and validating the recovery procedures. I thought it would be a good idea to have rolling nightly backups on a secondary ZFS pool with weekly syncs to an external disk. I ended up using this exact command to purge the rolling backups:
 

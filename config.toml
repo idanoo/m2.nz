@@ -1,11 +1,19 @@
 baseURL = 'https://m2.nz/'
-languageCode = 'en-us'
+languageCode = 'en'
 title = 'Daniel Mason'
-theme = "m10c"
+theme = 'LoveIt'
 
-[markup.goldmark.renderer]
-  unsafe = true
+# Defined later
+# [markup.goldmark.renderer]
+#   unsafe = true
   
+# Markup related configuration in Hugo
+# [markup]
+#   # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
+#   [markup.highlight]
+#     # false is a necessary configuration (https://github.com/dillonzq/LoveIt/issues/158)
+#     noClasses = false
+
 [menu]
   [[menu.main]]
     identifier = "home"
@@ -13,43 +21,493 @@ theme = "m10c"
     url = "/"
     weight = 1
   [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 2
+  [[menu.main]]
     identifier = "tags"
     name = "Tags"
     url = "/tags/"
-    weight = 2
+    weight = 3
   [[menu.main]]
     identifier = "about"
     name = "CV"
     url = "/cv/"
-    weight = 3
+    weight = 4
 
 [params]
+  defaultTheme = 'dark'
+  dateFormat = '2006-01-02'
+  title = 'Daniel Mason'
   author = "Daniel Mason"
   description = "Personal blog"
-  avatar = "bitmoji.jpg"
-  menu_item_separator = " | "
-  favicon = "/favicon.ico"
+  images = ["/favicon.ico"]
 
-  [[params.social]]
-    icon = "gitlab"
-    name = "GitLab"
-    url = "https://gitlab.com/idanoo"
-  [[params.social]]
-    icon = "send"
-    name = "Mastodon"
-    url = "https://mastodon.nz/@idanoo"
-  [[params.social]]
-    icon = "camera"
-    name = "Pixelfed"
-    url = "https://pixelfed.nz/idanoo"
-  [[params.social]]
-    icon = "message-square"
-    name = "Matrix"
-    url = "https://matrix.to/#/@idanoo:mtrx.nz"
+  # Header config
+  [params.header]
+    # desktop header mode ("fixed", "normal", "auto")
+    desktopMode = "fixed"
+    # mobile header mode ("fixed", "normal", "auto")
+    mobileMode = "auto"
+    # LoveIt NEW | 0.2.0 Header title config
+    [params.header.title]
+      # URL of the LOGO
+      logo = ""
+      # title name
+      name = "Daniel Mason"
+      # you can add extra information before the name (HTML format is supported), such as icons
+      pre = ""
+      # you can add extra information after the name (HTML format is supported), such as icons
+      post = ""
+      # LoveIt NEW | 0.2.5 whether to use typeit animation for title name
+      typeit = false
 
-[params.style]
-  darkestColor = "#242930"
-  darkColor = "#353b43"
-  lightColor = "#afbac4"
-  lightestColor = "#ffffff"
-  primaryColor = "#57cc8a"
+  [params.footer]
+    enable = true
+
+  # LoveIt NEW | 0.2.0 App icon config
+  [params.app]
+    # optional site title override for the app when added to an iOS home screen or Android launcher
+    title = "Daniel Mason"
+    # whether to omit favicon resource links
+    noFavicon = false
+    # modern SVG favicon to use in place of older style .png and .ico files
+    svgFavicon = ""
+    # Android browser theme color
+    themeColor = "#ffffff"
+    # Safari mask icon color
+    iconColor = "#5bbad5"
+    # Windows v8-10 tile color
+    tileColor = "#da532c"
+
+  # Home page config
+  [params.home]
+    # LoveIt NEW | 0.2.0 amount of RSS pages
+    rss = 10
+    # Home page profile
+    [params.home.profile]
+      enable = true
+      # Gravatar Email for preferred avatar in home page
+      gravatarEmail = "daniel@m2.nz"
+      # URL of avatar shown in home page
+      avatarURL = "/bitmoji.jpg"
+      # LoveIt CHANGED | 0.2.7 title shown in home page (HTML format is supported)
+      title = "Daniel Mason"
+      # subtitle shown in home page
+      subtitle = "Site Reliability Engineer, Dad, Pilot"
+      # whether to use typeit animation for subtitle
+      typeit = false
+      # whether to show social links
+      social = true
+      # LoveIt NEW | 0.2.0 disclaimer (HTML format is supported)
+      disclaimer = ""
+    # Home page posts
+    [params.home.posts]
+      enable = true
+      # special amount of posts in each home posts page
+      paginate = 5
+      # LoveIt DELETED | 0.2.0 replaced with hiddenFromHomePage in params.page
+      # default behavior when you don't set "hiddenFromHomePage" in front matter
+      defaultHiddenFromHomePage = false
+
+# Social config about the author
+  [params.social]
+    GitHub = ""
+    Linkedin = "idanoo"
+    Twitter = ""
+    Instagram = ""
+    Facebook = ""
+    Telegram = ""
+    Medium = ""
+    Gitlab = "idanoo"
+    Youtubelegacy = ""
+    Youtubecustom = ""
+    Youtubechannel = ""
+    Tumblr = ""
+    Quora = ""
+    Keybase = ""
+    Pinterest = ""
+    Reddit = ""
+    Codepen = ""
+    FreeCodeCamp = ""
+    Bitbucket = ""
+    Stackoverflow = ""
+    Weibo = ""
+    Odnoklassniki = ""
+    VK = ""
+    Flickr = ""
+    Xing = ""
+    Snapchat = ""
+    Soundcloud = ""
+    Spotify = ""
+    Bandcamp = ""
+    Paypal = ""
+    Fivehundredpx = ""
+    Mix = ""
+    Goodreads = ""
+    Lastfm = ""
+    Foursquare = ""
+    Hackernews = ""
+    Kickstarter = ""
+    Patreon = ""
+    Steam = ""
+    Twitch = ""
+    Strava = ""
+    Skype = ""
+    Whatsapp = ""
+    Zhihu = ""
+    Douban = ""
+    Angellist = ""
+    Slidershare = ""
+    Jsfiddle = ""
+    Deviantart = ""
+    Behance = ""
+    Dribbble = ""
+    Wordpress = ""
+    Vine = ""
+    Googlescholar = ""
+    Researchgate = ""
+    # Mastodon = "@idanoo@mastodon.nz"
+    Thingiverse = ""
+    Devto = ""
+    Gitea = ""
+    XMPP = ""
+    Matrix = "@idanoo:mtrx.nz"
+    Bilibili = ""
+    Email = "daniel@m2.nz"
+    RSS = false # LoveIt NEW | 0.2.0
+    Pixelfed = "https://pixelfed.nz/idanoo"
+    [params.social.Mastodon]
+      # weight when arranging icons (the greater the weight, the later the icon is positioned)
+      weight = 0
+      # your social ID
+      id = "@idanoo"
+      # prefix of your social link
+      prefix = "https://mastodon.nz/"
+      # content hovering on the icon
+      title = "Mastodon"
+
+
+ # LoveIt CHANGED | 0.2.0 Page global config
+  [params.page]
+    # LoveIt NEW | 0.2.0 whether to hide a page from home page
+    hiddenFromHomePage = false
+    # LoveIt NEW | 0.2.0 whether to hide a page from search results
+    hiddenFromSearch = false
+    # LoveIt NEW | 0.2.0 whether to enable twemoji
+    twemoji = false
+    # whether to enable lightgallery
+    lightgallery = false
+    # LoveIt NEW | 0.2.0 whether to enable the ruby extended syntax
+    ruby = true
+    # LoveIt NEW | 0.2.0 whether to enable the fraction extended syntax
+    fraction = true
+    # LoveIt NEW | 0.2.0 whether to enable the fontawesome extended syntax
+    fontawesome = true
+    # whether to show link to Raw Markdown content of the content
+    linkToMarkdown = true
+    # LoveIt NEW | 0.2.4 whether to show the full text content in RSS
+    rssFullText = false
+    # LoveIt NEW | 0.2.0 Table of the contents config
+    [params.page.toc]
+      # whether to enable the table of the contents
+      enable = true
+      # LoveIt NEW | 0.2.9 whether to keep the static table of the contents in front of the post
+      keepStatic = true
+      # whether to make the table of the contents in the sidebar automatically collapsed
+      auto = true
+    # LoveIt CHANGED | 0.2.0 KaTeX mathematical formulas
+    [params.page.math]
+      enable = true
+      # default inline delimiter is $ ... $ and \( ... \)
+      inlineLeftDelimiter = ""
+      inlineRightDelimiter = ""
+      # default block delimiter is $$ ... $$, \[ ... \], \begin{equation} ... \end{equation} and some other functions
+      blockLeftDelimiter = ""
+      blockRightDelimiter = ""
+      # KaTeX extension copy_tex
+      copyTex = true
+      # KaTeX extension mhchem
+      mhchem = true
+    # LoveIt NEW | 0.2.0 Code config
+    [params.page.code]
+      # whether to show the copy button of the code block
+      copy = true
+      # the maximum number of lines of displayed code by default
+      maxShownLines = 50
+    # LoveIt NEW | 0.2.0 Mapbox GL JS config
+    [params.page.mapbox]
+      # access token of Mapbox GL JS
+      accessToken = ""
+      # style for the light theme
+      lightStyle = "mapbox://styles/mapbox/light-v9"
+      # style for the dark theme
+      darkStyle = "mapbox://styles/mapbox/dark-v9"
+      # whether to add NavigationControl
+      navigation = true
+      # whether to add GeolocateControl
+      geolocate = true
+      # whether to add ScaleControl
+      scale = true
+      # whether to add FullscreenControl
+      fullscreen = true
+    # LoveIt CHANGED | 0.2.0 social share links in post page
+    [params.page.share]
+      enable = false
+      Twitter = false
+      Facebook = true
+      Linkedin = false
+      Whatsapp = true
+      Pinterest = false
+      Tumblr = false
+      HackerNews = false
+      Reddit = false
+      VK = false
+      Buffer = false
+      Xing = false
+      Line = true
+      Instapaper = false
+      Pocket = false
+      Digg = false
+      Stumbleupon = false
+      Flipboard = false
+      Weibo = true
+      Renren = false
+      Myspace = true
+      Blogger = true
+      Baidu = false
+      Odnoklassniki = false
+      Evernote = true
+      Skype = false
+      Trello = false
+      Mix = false
+    # LoveIt CHANGED | 0.2.0 Comment config
+    [params.page.comment]
+      enable = false
+      # Disqus comment config
+      [params.page.comment.disqus]
+        # LoveIt NEW | 0.1.1
+        enable = false
+        # Disqus shortname to use Disqus in posts
+        shortname = ""
+      # Gitalk comment config
+      [params.page.comment.gitalk]
+        # LoveIt NEW | 0.1.1
+        enable = false
+        owner = ""
+        repo = ""
+        clientId = ""
+        clientSecret = ""
+      # Valine comment config
+      [params.page.comment.valine]
+        enable = false
+        appId = ""
+        appKey = ""
+        placeholder = ""
+        avatar = "mp"
+        meta= ""
+        pageSize = 10
+        lang = ""
+        visitor = true
+        recordIP = true
+        highlight = true
+        enableQQ = false
+        serverURLs = ""
+        # LoveIt NEW | 0.2.6 emoji data file name, default is "google.yml"
+        # ("apple.yml", "google.yml", "facebook.yml", "twitter.yml")
+        # located in "themes/LoveIt/assets/data/emoji/" directory
+        # you can store your own data files in the same path under your project:
+        # "assets/data/emoji/"
+        emoji = ""
+      # Facebook comment config
+      [params.page.comment.facebook]
+        enable = false
+        width = "100%"
+        numPosts = 10
+        appId = ""
+        languageCode = ""
+      # LoveIt NEW | 0.2.0 Telegram comments config
+      [params.page.comment.telegram]
+        enable = false
+        siteID = ""
+        limit = 5
+        height = ""
+        color = ""
+        colorful = true
+        dislikes = false
+        outlined = false
+      # LoveIt NEW | 0.2.0 Commento comment config
+      [params.page.comment.commento]
+        enable = false
+      # LoveIt NEW | 0.2.5 Utterances comment config
+      [params.page.comment.utterances]
+        enable = false
+        # owner/repo
+        repo = ""
+        issueTerm = "pathname"
+        label = ""
+        lightTheme = "github-light"
+        darkTheme = "github-dark"
+    # LoveIt NEW | 0.2.7 Third-party library config
+    [params.page.library]
+      [params.page.library.css]
+        # someCSS = "some.css"
+        # located in "assets/"
+        # Or
+        # someCSS = "https://cdn.example.com/some.css"
+      [params.page.library.js]
+        # someJavascript = "some.js"
+        # located in "assets/"
+        # Or
+        # someJavascript = "https://cdn.example.com/some.js"
+    # LoveIt CHANGED | 0.2.10 Page SEO config
+    [params.page.seo]
+      # image URL
+      images = []
+      # Publisher info
+      [params.page.seo.publisher]
+        name = ""
+        logoUrl = ""
+
+  # LoveIt NEW | 0.2.5 TypeIt config
+  [params.typeit]
+    # typing speed between each step (measured in milliseconds)
+    speed = 100
+    # blinking speed of the cursor (measured in milliseconds)
+    cursorSpeed = 1000
+    # character used for the cursor (HTML format is supported)
+    cursorChar = "|"
+    # cursor duration after typing finishing (measured in milliseconds, "-1" means unlimited)
+    duration = -1
+
+  # Site verification code config for Google/Bing/Yandex/Pinterest/Baidu
+  [params.verification]
+    google = ""
+    bing = ""
+    yandex = ""
+    pinterest = ""
+    baidu = ""
+
+  # LoveIt NEW | 0.2.10 Site SEO config
+  [params.seo]
+    # image URL
+    image = ""
+    # thumbnail URL
+    thumbnailUrl = ""
+
+  # LoveIt NEW | 0.2.0 Analytics config
+  [params.analytics]
+    enable = false
+    # Google Analytics
+    [params.analytics.google]
+      id = ""
+      # whether to anonymize IP
+      anonymizeIP = true
+    # Fathom Analytics
+    [params.analytics.fathom]
+      id = ""
+      # server url for your tracker if you're self hosting
+      server = ""
+
+  # LoveIt NEW | 0.2.7 Cookie consent config
+  [params.cookieconsent]
+    enable = false
+    # text strings used for Cookie consent banner
+    [params.cookieconsent.content]
+      message = ""
+      dismiss = ""
+      link = ""
+
+  # LoveIt CHANGED | 0.2.7 CDN config for third-party library files
+  [params.cdn]
+    # CDN data file name, disabled by default
+    # ("jsdelivr.yml")
+    # located in "themes/LoveIt/assets/data/cdn/" directory
+    # you can store your own data files in the same path under your project:
+    # "assets/data/cdn/"
+    data = ""
+
+  # LoveIt NEW | 0.2.8 Compatibility config
+  [params.compatibility]
+    # whether to use Polyfill.io to be compatible with older browsers
+    polyfill = false
+    # whether to use object-fit-images to be compatible with older browsers
+    objectFit = false
+
+# Markup related config in Hugo
+[markup]
+  # Syntax Highlighting
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    lineNumbersInTable = true
+    # false is a necessary configuration
+    # (https://github.com/dillonzq/LoveIt/issues/158 )
+    noClasses = false
+  # Goldmark is from Hugo 0.60 the default library used for Markdown
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.renderer]
+      # whether to use HTML tags directly in the document
+      unsafe = true
+  # Table Of Contents settings
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 6
+
+# Author config
+[author]
+  name = "idanoo"
+  email = "daniel@m2.nz"
+  link = "https://m2.nz"
+
+# Sitemap config
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+# Permalinks config
+[Permalinks]
+  # posts = ":year/:month/:filename"
+  posts = ":filename"
+
+# Privacy config
+[privacy]
+  # LoveIt DELETED | 0.2.0 privacy of the Google Analytics (replaced by params.analytics.google)
+  [privacy.googleAnalytics]
+    # ...
+  [privacy.twitter]
+    enableDNT = true
+  [privacy.youtube]
+    privacyEnhanced = true
+
+# Options to make output .md files
+[mediaTypes]
+  [mediaTypes."text/plain"]
+    suffixes = ["md"]
+
+# Options to make output .md files
+[outputFormats.MarkDown]
+  mediaType = "text/plain"
+  isPlainText = true
+  isHTML = false
+
+# Options to make hugo output files
+[outputs]
+  # LoveIt CHANGED | 0.2.0
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML", "MarkDown"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  taxonomyTerm = ["HTML"]
+

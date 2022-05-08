@@ -1,7 +1,6 @@
-+++
-title = "Employment History"
-
-+++
+---
+title: "Employment History"
+---
 
 <div style="display: flex;">
     <div style="flex-direction: row; margin-right: 20px">

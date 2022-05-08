@@ -1,10 +1,13 @@
-+++
-title = "Configuring an APRS receiver with an RTL-SDR and Direwolf"
-tags = ["aprs", "amateur radio", "vhf", "direwolf"]
-date = "2021-12-16"
-+++
+---
+title: "Configuring an APRS receiver with an RTL-SDR and Direwolf"
+tags: ["aprs", "amateur radio", "direwolf"]
+date: "2021-12-16"
+featuredimagepreview: "/aprs.jpg"
+---
 
 What is APRS? Automatic Packet Reporting System! Essentially a VHF radio sending out GPS location pings in the 2M ham band which can be seen at [aprs.fi](https://aprs.fi/). If you take a look at that link you will often see radiosondes and their reported data, weather stations as well as bunch of amateur operators transmitting data all over the world. Fascinating stuff.
+
+![Yaesu FT3D with APRS tuned](/aprs.png)
 
 I recently got my hands on an RTL-SDR v3 which claims much better accuracy and performance over previous models. Figured I'd give it a go receiving APRS and see what I could get. I did a bit of research and tested a few different packages but ended up settling with [Direwolf](https://github.com/wb2osz/direwolf). For those interested, I'm running this on an Ubuntu 20.04 LXC container with USB passthrough for the SDR itself.
 
@@ -16,7 +19,6 @@ apt-get install rtl-sdr direwolf
 
 My `sdr.conf` file for reference with callsign and location blanked out.
 ```shell
-root@aprs:~# cat /root/sdr.conf
 ACHANNELS 1
 ADEVICE null null
 CHANNEL 0
