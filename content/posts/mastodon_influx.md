@@ -2,7 +2,6 @@
 title: "Hosting mastodon.nz and the recent twitter influx"
 tags: ["mastodon", "twitter", "self hosting"]
 date: "2022-05-08"
-draft: true
 featuredimagepreview: "/server1.jpg"
 ---
 
@@ -31,7 +30,5 @@ It was about at this time I figured we probably needed to look into the future o
 {{< image src="/server_prov.jpg" caption="Provisioning everything (Excuse the mess)"src_s="/server_prov.jpg" src_l="/server_prov_l.jpg" >}}
 
 After about 6 hours of configuring and installing everything required, I was ready to make a trip to a local datacenter to rack it (Thanks to previously mentioned friend!) and start the painful migration.
-// opnsense
 
-// IP
-
+More to come soon..
