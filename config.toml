@@ -65,6 +65,12 @@ theme = 'LoveIt'
 
   [params.footer]
     enable = true
+    custom = ''
+    hugo = false
+    copyright = true
+    author = true
+    since = 2020
+    license = ''
 
   # LoveIt NEW | 0.2.0 App icon config
   [params.app]
@@ -198,7 +204,7 @@ theme = 'LoveIt'
     # LoveIt NEW | 0.2.0 whether to enable twemoji
     twemoji = false
     # whether to enable lightgallery
-    lightgallery = false
+    lightgallery = true
     # LoveIt NEW | 0.2.0 whether to enable the ruby extended syntax
     ruby = true
     # LoveIt NEW | 0.2.0 whether to enable the fraction extended syntax
@@ -212,9 +218,9 @@ theme = 'LoveIt'
     # LoveIt NEW | 0.2.0 Table of the contents config
     [params.page.toc]
       # whether to enable the table of the contents
-      enable = true
+      enable = false
       # LoveIt NEW | 0.2.9 whether to keep the static table of the contents in front of the post
-      keepStatic = true
+      keepStatic = false
       # whether to make the table of the contents in the sidebar automatically collapsed
       auto = true
     # LoveIt CHANGED | 0.2.0 KaTeX mathematical formulas
