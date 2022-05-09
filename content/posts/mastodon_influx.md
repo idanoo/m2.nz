@@ -25,7 +25,7 @@ I got an email shortly after from Sendgrid advising that we were approaching the
 
 {{< image src="/sendgrid.jpg" caption="Email throughput peaking around 400/day" >}}
 
-It was about at this time I figured we probably needed to look into the future of mastodon and if we plan on maintaining it long term with a much higher capacity. I jumped on trademe and started working out we could afford and what we needed to maintain a decent growth over the next 12+ months. Boom! Found the perfect thing in our price range. A second hand HP DL360p Gen8 - With 32 cores and 80GB ram. The only issue is disks. I've never been one to trust second hand disks. So went waaaay over budget and bought 2 x 500GB EVO870's and 2 x 2TB EVO870's to run in a ZFS mirror for storage.
+It was about at this time I figured we probably needed to look into the future of mastodon and if we plan on maintaining it long term with a much higher capacity. I jumped on TradeMe and started working out what we could afford and what we needed to maintain a decent growth over the next 12+ months. Boom! Found the perfect thing in our price range. A secondhand HP DL360p Gen8 - With 32 cores and 80GB ram. The only issue is disks. I've never been one to trust secondhand disks. So ended up going over budget and bought 2 x 500GB EVO870's and 2 x 2TB EVO870's to run in a ZFS mirror for storage.
 
 {{< image src="/server1.jpg" caption="New server" >}}
 
