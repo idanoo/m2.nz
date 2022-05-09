@@ -47,7 +47,7 @@ Costs have gone up a little bit. It's still mangable for the time being and I pl
 <br/><br/>
 We are currently hosting a few other ActivityPub (Fediverse) related sites you might be interested in!
 
-[Pixelfed.nz](https://pixelfed.nz) - **Photos**  -Photo Sharing. For Everyone.
+[Pixelfed.nz](https://pixelfed.nz) - **Photos**  - Photo Sharing. For Everyone.
 
 [Mtrx.nz](https://mtrx.nz) - **Chat** - An open network for secure, decentralized communication.
 
