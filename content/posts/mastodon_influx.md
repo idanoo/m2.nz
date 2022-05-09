@@ -11,11 +11,11 @@ I started hosting [mastodon.nz](https://mastodon.nz) around January 2020 on my h
 
 {{< image src="/kitchen_server.jpg" caption="\"Server\" - April 2021" src_s="/kitchen_server.jpg" src_l="/kitchen_server_l.jpg" >}}
 
-Mid 2021 a good friend of mine offered a great deal on some actual hosting in a datacenter. Now we had 8vCPU + 8GB RAM to play with, time to migrate everything. After a few hours of mastering `rsync` and `pg_dump` - it was done, we were set for awhile. At least that's what I thought..
+Mid 2021 a good friend of mine offered a great deal on some actual hosting in a datacenter. Now we had 8vCPU + 8GB RAM to play with, time to migrate everything. After a few hours of mastering `rsync` and `pg_dump` - it was done, we were set for a while. At least that's what I thought..
 
 April 2022 brought a nice little surprise - I started getting notifications of new users joining [mastodon.nz](https://mastodon.nz). Confused I started to look at what has changed.. Didn't take long to realise this was only the beginning. I had to allocate more resource to the container to account for the higher throughput.
 
-You can see in the image below it started to approach the allocated 3GB - I bumped it up to 4GB, then shortly after up to 6GB. That's as much as I could give it without moving to bigger hardware. (The drop a the end was a service restart after a version upgrade).
+You can see in the image below it started to approach the allocated 3GB - I bumped it up to 4GB, then shortly after up to 6GB. That's as much as I could give it without moving to bigger hardware. (The drop at the end was a service restart after a version upgrade).
 
 {{< image src="/masto_memory.jpg" caption="Memory usage in mastodon.nz container" >}}
 
@@ -41,9 +41,9 @@ Here is where we are currently sitting:
 
 {{< image src="/server_resource.jpg" caption="Current status" >}}
 
-I'm pretty happy overall with how this has has turned out. I have just finished configuring nightly off-site backups to b2backblaze (Remember: RAID is not a backup!).
+I'm pretty happy overall with how this has turned out. I have just finished configuring nightly off-site backups to b2backblaze (Remember: RAID is not a backup!).
 
-Costs have gone up a little bit. It's still mangable for the time being and I plan on supporting this long term. If you want to help out, feel free to shout me a coffee @ [ko-fi.com/idanoo](https://ko-fi.com/idanoo).
+Costs have gone up a little bit. It's still manageable for the time being and I plan on supporting this long term. If you want to help out, feel free to shout me a coffee @ [ko-fi.com/idanoo](https://ko-fi.com/idanoo).
 <br/><br/>
 We are currently hosting a few other ActivityPub (Fediverse) related sites you might be interested in!
 
