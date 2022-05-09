@@ -1,7 +1,7 @@
 ---
 title: "Hosting mastodon.nz and the recent twitter influx"
 tags: ["mastodon", "twitter", "self hosting"]
-date: "2022-05-08"
+date: "2022-05-09"
 featuredimagepreview: "/server1.jpg"
 ---
 
@@ -15,11 +15,13 @@ Mid 2021 a good friend of mine offered a great deal on some actual hosting in a 
 
 April 2022 brought a nice little surprise - I started getting notifications of new users joining [mastodon.nz](https://mastodon.nz). Confused I started to look at what has changed.. Didn't take long to realise this was only the beginning. I had to allocate more resource to the container to account for the higher throughput.
 
-You can see in the image below it started to approach the allocated 3GB - I bumped it up to 4GB, then shortly after up to 6GB. That's as much as I could give it without moving to bigger hardware.
+You can see in the image below it started to approach the allocated 3GB - I bumped it up to 4GB, then shortly after up to 6GB. That's as much as I could give it without moving to bigger hardware. (The drop a the end was a service restart after a version upgrade).
 
 {{< image src="/masto_memory.jpg" caption="Memory usage in mastodon.nz container" >}}
 
-I thought that would be enough for now. Nope. I got an email from Sendgrid that we had hit their 100 email/day free tier limit. Crap. I managed to upgrade the plan to account for the burst of registrations before any emails started to bounce.
+I thought that would be enough for now. Nope.
+
+I got an email shortly after from Sendgrid advising that we were approaching their 100 email/day free tier limit. Crap. I managed to upgrade the plan to account for the burst of registrations before any emails started to bounce.
 
 {{< image src="/sendgrid.jpg" caption="Email throughput peaking around 400/day" >}}
 
@@ -29,6 +31,9 @@ It was about at this time I figured we probably needed to look into the future o
 
 {{< image src="/server_prov.jpg" caption="Provisioning everything (Excuse the mess)"src_s="/server_prov.jpg" src_l="/server_prov_l.jpg" >}}
 
+{{< image src="/server_disk.jpg" caption="Disk setup" >}}
+
 After about 6 hours of configuring and installing everything required, I was ready to make a trip to a local datacenter to rack it (Thanks to previously mentioned friend!) and start the painful migration.
 
-More to come soon.
+
+Part two coming soon!
