@@ -35,5 +35,22 @@ It was about at this time I figured we probably needed to look into the future o
 
 After about 6 hours of configuring and installing everything required, I was ready to make a trip to a local datacenter to rack it (Thanks to previously mentioned friend!) and start the painful migration.
 
+Unfortunately I don't have any photos of the datacenter/server install. But it was awesome - you can take my word for it!
 
-Part two coming soon!
+Here is where we are currently sitting:
+
+{{< image src="/server_resource.jpg" caption="Current status" >}}
+
+I'm pretty happy overall with how this has has turned out. I have just finished configuring nightly off-site backups to b2backblaze (Remember: RAID is not a backup!).
+
+Costs have gone up a little bit. It's still mangable for the time being and I plan on supporting this long term. If you want to help out, feel free to shout me a coffee @ [ko-fi.com/idanoo](https://ko-fi.com/idanoo).
+<br/><br/><br/>
+We are currently hosting a few other ActivityPub (Fediverse) related sites you might be interested in!
+
+[Pixelfed.nz](https://pixelfed.nz) - **Photos**  -Photo Sharing. For Everyone.
+
+[Mtrx.nz](https://mtrx.nz) - **Chat** - An open network for secure, decentralized communication.
+
+[OpenEvents.nz](https://openevents.nz) - **Events** - Tool to help manage your events, your profiles and your groups.
+
+[Peertube.nz](https://peertube.nz) - **Videos** - ActivityPub-federated video streaming platform using P2P directly in your web browser.
