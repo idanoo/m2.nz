@@ -46,7 +46,7 @@ At Catalyst, I worked directly with several large corporate clients doing routin
     <div style="flex-direction: row">
         <h3 style="margin-top: 5px">ezyVet</h3>
         <h4 style="margin-top:-16px; color: #afbac4">Cloud Environment and Application Engineer</h4>
-        <p style="margin-top:-20px;">August 2017 - October 2018</p>
+        <p style="margin-top:-20px;">March 2016 - October 2018</p>
     </div>
 </div>
 
