@@ -44,7 +44,7 @@ Here is where we are currently sitting:
 I'm pretty happy overall with how this has has turned out. I have just finished configuring nightly off-site backups to b2backblaze (Remember: RAID is not a backup!).
 
 Costs have gone up a little bit. It's still mangable for the time being and I plan on supporting this long term. If you want to help out, feel free to shout me a coffee @ [ko-fi.com/idanoo](https://ko-fi.com/idanoo).
-<br/><br/><br/>
+<br/><br/>
 We are currently hosting a few other ActivityPub (Fediverse) related sites you might be interested in!
 
 [Pixelfed.nz](https://pixelfed.nz) - **Photos**  -Photo Sharing. For Everyone.
