@@ -2,6 +2,21 @@
 title: "Employment History"
 ---
 
+<h1 style="font-size: 1.6rem;" class="animate__animated animate__pulse animate__faster">Certifications</h1>
+<div style="display: flex;">
+    <div style="flex-direction: row; text-align: center; margin-right: 20px">
+        May 2022</br>
+        <img alt="AWS Logo" title="AWS Logo" src="/hashicorp.jpg"><br/>
+        <a href="https://www.hashicorp.com/certification/terraform-associate" target="_blank">Hashicorp Certified</br>Terraform Associate</a>
+    </div>
+    <div style="flex-direction: row; text-align: center; margin-right: 20px">
+        Jun 2020</br>
+        <img alt="AWS Logo" title="AWS Logo" src="/aws.jpg"><br/>
+        <a href="https://aws.amazon.com/certification/certified-cloud-practitioner/" target="_blank">AWS Certified</br>Cloud Practicioner</a>
+    </div>
+</div>
+<br/>
+<h1 style="font-size: 1.6rem;" class="animate__animated animate__pulse animate__faster">Employment</h1>
 <div style="display: flex;">
     <div style="flex-direction: row; margin-right: 20px">
         <img alt="ezyVet Logo" title="ezyVet Logo" src="/ezyvet_logo.png">
@@ -13,16 +28,19 @@ title: "Employment History"
     </div>
 </div>
 
-My role at ezyVet is primarily focused on improving performance and response time across the full stack from PHP, MySQL and ElasticSearch improvements to optimizing AWS usage and cost.
 
-- Pushing for latest versions of services to keep frameworks up to date and utilize any performance improvements (PHP, MySQL, Elasticsearch, Redis upgrades)
-- Building automation pipelines through GitLab CI
-- Experience building a cross-platform Go application utilizing Websockets with AWS API Gateway and SQS/SNS/DynamoDB/Lambda/Terraform
-- Creating a full docker development environment for engineers to improve development workflows
-- Reducing RDS load and improving SQL query response time via query restructuring to make better use of compound indexes and foreign keys
-- Rebuilding Elasticsearch clusters to improve redundancy and response time with optimised indexes
-- Writing custom service monitoring tools in Go that interface directly with Docker, ElasticSearch and PHP-FPM
-- Optimising MySQL parameter groups to get the most out of each instance
+My role at ezyVet is primarily focused around performance, uptime and cost across the entire platform, primarily working with PHP, MySQL, ElasticSearch and Redis.
+
+- Maintaining services and patching latest versions for security and performance improvements.
+- Writing complete automation pipelines on GitLab CI.
+- Building a Golang application utilizing multiple best practice AWS services including<br/>&nbsp;&nbsp;API Gateway websockets/SQS/SNS/DynamoDB/Lambda/Terraform.
+- Incident response and improving process.
+- Creating a docker engineering environment to improve development workflows and onboarding.
+- Focus on reducing RDS load and improving SQL query times across the board.
+- Completely rewriting Elastic Search service from the ground up to improve search times.
+- Writing custom service monitoring tools in Go that interface with Slack/Pagerduty.
+- MySQL performance optimizations and maintaining integrity across all environments.
+- Introducing Grafana and reachitecting monitoring for observability.
 
 <br/>
 <div style="display: flex;">
@@ -94,4 +112,4 @@ Management:
 </div>
   	
 
-Focused on building new features and improving our cloud environment. Primarily working in PHP.
+Focused on building new features and improving our cloud environment and application.<br/>Primarily working with PHP.
