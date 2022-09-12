@@ -4,10 +4,7 @@ pipeline:
     commands:
       - apk update
       - apk add openssh
-      - ssh-keygen -R $M2_HOST
       - echo $M2_DEPLOY_KEY > /root/.ssh/privkey
       - ssh -i /root/.ssh/privkey root@M2_HOST 'cd /var/www/m2.nz && git pull && chown www-data:users -R /var/www/m2.nz && sudo systemctl reload nginx.service'
       - rm -fr /root/.ssh/privkey
     secrets: [ m2_deploy_key, m2_host ]
-
-    
