@@ -9,3 +9,14 @@ pipeline:
       - dpkg -i hugo_extended_$${HUGO_VERSION}_Linux-64bit.deb
       - hugo
       - ls
+
+  deploy:
+    image: golang
+    environment:
+      - HUGO_VERSION=0.102.3
+    commands:
+      - echo $M2_DEPLOY_KEY > privkey
+      - scp -i privkey -r public $M2_DEPLOY_STRING
+      - ssh -i privkey $M2_DEPLOY_STRING 'sudo systemctl reload nginx.service'
+      - rm -fr privkey
+    secrets: [ m2_deploy_secret, m2_deploy_string ]
