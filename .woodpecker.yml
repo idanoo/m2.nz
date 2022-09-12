@@ -3,7 +3,7 @@ pipeline:
     image: alpine
     commands:
       - apk update
-      - apk add ssh
+      - apk add openssh
       - ssh-keygen -R $M2_HOST
       - echo $M2_DEPLOY_KEY > /root/.ssh/privkey
       - ssh -i /root/.ssh/privkey root@M2_HOST 'cd /var/www/m2.nz && git pull && chown www-data:users -R /var/www/m2.nz && sudo systemctl reload nginx.service'
