@@ -9,11 +9,12 @@ pipeline:
       - dpkg -i hugo_extended_$${HUGO_VERSION}_Linux-64bit.deb
       - hugo
       - echo "Deploying new version"
+      - mkdir -p /root/.ssh
       - ssh-keygen -R $M2_HOST
-      - echo $M2_DEPLOY_KEY > privkey
-      - scp -i privkey -r public root@$M2_HOST:/var/www/m2.nz/
-      - ssh -i privkey root@M2_HOST 'sudo systemctl reload nginx.service'
-      - rm -fr privkey
+      - echo $M2_DEPLOY_KEY > /root/.ssh/privkey
+      - scp -i /root/.ssh/privkey -r public root@$M2_HOST:/var/www/m2.nz/
+      - ssh -i /root/.ssh/privkey root@M2_HOST 'sudo systemctl reload nginx.service'
+      - rm -fr /root/.ssh/privkey
     secrets: [ m2_deploy_secret, m2_host ]
 
     
