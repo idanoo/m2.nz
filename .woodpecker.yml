@@ -4,7 +4,8 @@ pipeline:
     environment:
       - HUGO_VERSION=0.102.3
     commands:
-      - export CUR_TIME=$(date '+%Y-%m-%d_%H%M')
+      - echo "Installing Hugo $${HUGO_VERSION}"
       - wget https://github.com/gohugoio/hugo/releases/download/v$${HUGO_VERSION}/hugo_extended_$${HUGO_VERSION}_Linux-64bit.deb
       - dpkg -i hugo_extended_$${HUGO_VERSION}_Linux-64bit.deb
       - hugo
+      - ls
