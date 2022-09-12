@@ -1,6 +1,7 @@
 pipeline:
   build:
     image: alpine
+    branches: main
     commands:
       - apk update
       - apk add openssh
