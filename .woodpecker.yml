@@ -4,11 +4,7 @@ pipeline:
     environment:
       - HUGO_VERSION=0.102.3
     commands:
-      - echo "test 1 ${HUGO_VERSION}"
-      - echo "test 2 $${HUGO_VERSION}"
-      - echo "test 3 $HUGO_VERSION"
-      - echo "test 4 $$HUGO_VERSION"
       - export CUR_TIME=$(date '+%Y-%m-%d_%H%M')
-      - wget https://github.com/gohugoio/hugo/releases/download/v$HUGO_VERSION/hugo_extended_$HUGO_VERSION_Linux-64bit.deb
-      - dpkg -i hugo_extended_$HUGO_VERSION_Linux-64bit.deb
+      - wget https://github.com/gohugoio/hugo/releases/download/v$${HUGO_VERSION}/hugo_extended_$${HUGO_VERSION}_Linux-64bit.deb
+      - dpkg -i hugo_extended_$${HUGO_VERSION}_Linux-64bit.deb
       - hugo
