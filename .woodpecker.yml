@@ -1,20 +1,12 @@
 pipeline:
   build:
-    image: golang
-    environment:
-      - HUGO_VERSION=0.102.3
+    image: bash
     commands:
-      - echo "Installing Hugo $${HUGO_VERSION}"
-      - wget https://github.com/gohugoio/hugo/releases/download/v$${HUGO_VERSION}/hugo_extended_$${HUGO_VERSION}_Linux-64bit.deb
-      - dpkg -i hugo_extended_$${HUGO_VERSION}_Linux-64bit.deb
-      - hugo
       - echo "Deploying new version"
-      - mkdir -p /root/.ssh
       - ssh-keygen -R $M2_HOST
       - echo $M2_DEPLOY_KEY > /root/.ssh/privkey
-      - scp -i /root/.ssh/privkey -r public root@$M2_HOST:/var/www/m2.nz/
-      - ssh -i /root/.ssh/privkey root@M2_HOST 'sudo systemctl reload nginx.service'
+      - ssh -i /root/.ssh/privkey root@M2_HOST 'cd /var/www/m2.nz && git pull && chown www-data:users -R /var/www/m2.nz && sudo systemctl reload nginx.service'
       - rm -fr /root/.ssh/privkey
-    secrets: [ m2_deploy_secret, m2_host ]
+    secrets: [ m2_deploy_key, m2_host ]
 
     
