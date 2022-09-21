@@ -2,6 +2,7 @@
 title: "Gitea and Woodpecker CI"
 tags: ["gitea", "woodpecker", "cicd", "self hosting"]
 date: "2022-09-12"
+draft: "true"
 featuredimagepreview: "/woodpecker.jpg"
 ---
 
