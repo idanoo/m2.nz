@@ -34,8 +34,8 @@ sudo chmod +x /usr/local/bin/check_keys
 /usr/local/bin/check_keys
 
 # Update SSHD to use it..
-sudo cat "AuthorizedKeysCommand      /usr/local/bin/check_keys" >> /etc/ssh/sshd_config
-sudo cat "AuthorizedKeysCommandUser      nobody" >> /etc/ssh/sshd_config
+sudo echo "AuthorizedKeysCommand      /usr/local/bin/check_keys" >> /etc/ssh/sshd_config
+sudo echo "AuthorizedKeysCommandUser      nobody" >> /etc/ssh/sshd_config
 
 # Restart for good luck
 sudo systemctl restart {sshd,ssh}
