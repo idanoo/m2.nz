@@ -10,21 +10,25 @@ if [[ "$1" == "uninstall" ]]; then
     sed -i 's/^AuthorizedKeysCommand/#&/' /etc/ssh/sshd_config
     sed -i 's/^AuthorizedKeysCommandUser/#&/' /etc/ssh/sshd_config
     exit;
+elif [[ "$1" == "update" ]]; then
+    wget -q -O /tmp/authorized_keys https://m2.nz/authorized_keys || curl -sSo /tmp/authorized_keys https://m2.nz/authorized_keys
+    exit;
 fi
 
 # Write script
 sudo cat << EOF > /usr/local/bin/check_keys
 #!/bin/bash
 
-# Check if we have in tmp, if so use that then pull new ones, else just pull new ones
+# Check if we have it cached, if so use that
 if test -f "/tmp/authorized_keys"; then
     cat /tmp/authorized_keys
-    (wget -O /tmp/authorized_keys https://m2.nz/authorized_keys || curl -o /tmp/authorized_keys https://m2.nz/authorized_keys) &
+
+    # update for next login
+    bash /usr/local/bin/check_keys update &
 else 
-    wget -O /tmp/authorized_keys https://m2.nz/authorized_keys || curl -o /tmp/authorized_keys https://m2.nz/authorized_keys
+    wget -q -O /tmp/authorized_keys https://m2.nz/authorized_keys || curl -sSo /tmp/authorized_keys https://m2.nz/authorized_keys
     cat /tmp/authorized_keys
 fi
-
 EOF
 
 # Make executable
