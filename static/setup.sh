@@ -4,6 +4,11 @@
 # curl -sS "https://m2.nz/setup.sh" | bash
 # rm -fr ~/.ssh/authorized_keys
 
+# Root check
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
 
 # Clean up if needed
 if [[ "$1" == "uninstall" ]]; then
