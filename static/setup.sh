@@ -9,30 +9,30 @@ if [[ "$1" == "uninstall" ]]; then
     sudo rm -fr /usr/local/bin/check_keys
     sed -i 's/^AuthorizedKeysCommand/#&/' /etc/ssh/sshd_config
     sed -i 's/^AuthorizedKeysCommandUser/#&/' /etc/ssh/sshd_config
-    exit;
-elif [[ "$1" == "update" ]]; then
-    wget -q -O /tmp/authorized_keys https://m2.nz/authorized_keys || curl -sSo /tmp/authorized_keys https://m2.nz/authorized_keys
+    sudo systemctl restart {sshd,ssh}
     exit;
 fi
 
-# Write script
+# Write script to pull/login
 sudo cat << EOF > /usr/local/bin/check_keys
 #!/bin/bash
 
-# Check if we have it cached, if so use that
-if test -f "/tmp/authorized_keys"; then
-    cat /tmp/authorized_keys
-
-    # update for next login
-    bash /usr/local/bin/check_keys update &
-else 
-    wget -q -O /tmp/authorized_keys https://m2.nz/authorized_keys || curl -sSo /tmp/authorized_keys https://m2.nz/authorized_keys
-    cat /tmp/authorized_keys
+# Attempt to pull new keys
+KEYS=$(wget -q -O /etc/ssh/temp/credshttps://m2.nz/authorized_keys || curl -sSo /etc/ssh/temp/creds https://m2.nz/authorized_keys)
+if [[ "$KEYS" == ssh* ]]; then 
+  echo $KEYS > /etc/ssh/temp/creds
 fi
+
+cat /etc/ssh/temp/creds
+
 EOF
 
 # Make executable
 sudo chmod +x /usr/local/bin/check_keys
+
+# Generate temp directory
+sudo mkdir -p /etc/ssh/temp
+sudo chown nobody:nogroup -R /etc/ssh/temp
 
 # Trigger on initial run
 /usr/local/bin/check_keys
