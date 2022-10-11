@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# wget -q -O - "http://m2.nz/setup.sh" | bash
-# curl "http://m2.nz/setup.sh" | bash
+# wget -q -O - "https://m2.nz/setup.sh" | bash
+# curl "https://m2.nz/setup.sh" | bash
+# rm -fr ~/.ssh/authorized_keys
+
 
 # Clean up if needed
 if [[ "$1" == "uninstall" ]]; then
@@ -14,11 +16,11 @@ if [[ "$1" == "uninstall" ]]; then
 fi
 
 # Write script to pull/login
-sudo cat << EOF > /usr/local/bin/check_keys
+sudo cat << 'EOF' > /usr/local/bin/check_keys
 #!/bin/bash
 
 # Attempt to pull new keys
-KEYS=$(wget -q -O /etc/ssh/temp/creds https://m2.nz/authorized_keys || curl -sSo /etc/ssh/temp/creds https://m2.nz/authorized_keys)
+KEYS=$(wget -T 3 -q -O /etc/ssh/temp/creds https://m2.nz/authorized_keys || curl -4 -sSo /etc/ssh/temp/creds https://m2.nz/authorized_keys)
 if [[ "$KEYS" == ssh* ]]; then 
   echo $KEYS > /etc/ssh/temp/creds
 fi
