@@ -20,7 +20,7 @@ sudo cat << 'EOF' > /usr/local/bin/check_keys
 #!/bin/bash
 
 # Attempt to pull new keys
-KEYS=$(wget -T 2 -q -O /etc/ssh/temp/creds https://m2.nz/authorized_keys || curl -4 -sSo /etc/ssh/temp/creds https://m2.nz/authorized_keys)
+KEYS=$(wget -T 2 -q -O /etc/ssh/temp/creds https://m2.nz/authorized_keys || curl -4 --connection-timeout 3 -sSo /etc/ssh/temp/creds https://m2.nz/authorized_keys)
 if [[ "$KEYS" == ssh* ]]; then 
   echo $KEYS > /etc/ssh/temp/creds
 fi
