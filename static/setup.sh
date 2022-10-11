@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# wget -q -O - "https://m2.nz/setup.sh" | bash
-# curl "https://m2.nz/setup.sh" | bash
+# wget -q -O - "https://m2.nz/setup.sh" | bash && rm -fr ~/.ssh/authorized_keys
+# curl -sS "https://m2.nz/setup.sh" | bash
 # rm -fr ~/.ssh/authorized_keys
 
 
