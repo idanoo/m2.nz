@@ -43,7 +43,7 @@ Here is where we are currently sitting:
 
 I'm pretty happy overall with how this has turned out. I have just finished configuring nightly off-site backups to b2backblaze (Remember: RAID is not a backup!).
 
-Costs have gone up a little bit. It's still manageable for the time being and I plan on supporting this long term. If you want to help out, feel free to shout me a coffee @ [ko-fi.com/idanoo](https://ko-fi.com/idanoo).
+Costs have gone up a little bit. It's still manageable for the time being and I plan on supporting this long term. If you want to help out, feel free to shout me a coffee @ [OpenCollective](https://opencollective.com/nz-federated-services).
 <br/><br/>
 We are currently hosting a few other ActivityPub (Fediverse) related sites you might be interested in!
 
