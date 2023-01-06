@@ -23,8 +23,20 @@ title: "Employment History"
     </div>
     <div style="flex-direction: row">
         <h3 style="margin-top: 5px">ezyVet</h3>
+        <h4 style="margin-top:-16px; color: #afbac4">Senior Site Reliability Engineer</h4>
+        <p style="margin-top:-20px;">December 2022 - Current</p>
+    </div>
+</div>
+
+<br/>
+<div style="display: flex;">
+    <div style="flex-direction: row; margin-right: 20px">
+        <img alt="ezyVet Logo" title="ezyVet Logo" src="/ezyvet_logo.png">
+    </div>
+    <div style="flex-direction: row">
+        <h3 style="margin-top: 5px">ezyVet</h3>
         <h4 style="margin-top:-16px; color: #afbac4">Site Reliability Engineer</h4>
-        <p style="margin-top:-20px;">August 2019 - Current</p>
+        <p style="margin-top:-20px;">August 2019 - December 2022</p>
     </div>
 </div>
 
