@@ -2,17 +2,30 @@
 title: "Employment History"
 ---
 
-<h1 style="font-size: 1.6rem;" class="animate__animated animate__pulse animate__faster">Certifications</h1>
+<h1 style="font-size: 1.6rem;" class="animate__animated animate__pulse animate__faster">
+    <a href="https://www.credly.com/users/daniel-mason.2a91e126/badges" target="_blank">Certifications</a>
+</h1>
 <div style="display: flex;">
     <div style="flex-direction: row; text-align: center; margin-right: 20px">
+        Feb 2023</br>
+        <a href="https://www.credly.com/users/daniel-mason.2a91e126/badges" target="_blank">
+            <img alt="PagerDuty Certified" title="PagerDuty Certified" src="/pagerduty.png" height="100px" width="100px"><br/>
+            PagerDuty Certified</br>Incident Responder
+        </a>
+    </div>
+    <div style="flex-direction: row; text-align: center; margin-right: 20px">
         May 2022</br>
-        <img alt="AWS Logo" title="AWS Logo" src="/hashicorp.jpg"><br/>
-        <a href="https://www.hashicorp.com/certification/terraform-associate" target="_blank">Hashicorp Certified</br>Terraform Associate</a>
+        <a href="https://www.credly.com/users/daniel-mason.2a91e126/badges" target="_blank">
+            <img alt="AWS Logo" title="AWS Logo" src="/hashicorp.jpg"><br/>
+            Hashicorp Certified</br>Terraform Associate
+        </a>
     </div>
     <div style="flex-direction: row; text-align: center; margin-right: 20px">
         Jun 2020</br>
-        <img alt="AWS Logo" title="AWS Logo" src="/aws.jpg"><br/>
-        <a href="https://aws.amazon.com/certification/certified-cloud-practitioner/" target="_blank">AWS Certified</br>Cloud Practicioner</a>
+        <a href="https://www.credly.com/users/daniel-mason.2a91e126/badges" target="_blank">
+            <img alt="AWS Logo" title="AWS Logo" src="/aws.jpg"><br/>
+            AWS Certified</br>Cloud Practicioner
+        </a>
     </div>
 </div>
 <br/>
