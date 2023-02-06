@@ -3,7 +3,7 @@ title: "Employment History"
 ---
 
 <h1 style="font-size: 1.6rem;" class="animate__animated animate__pulse animate__faster">
-    <a href="https://www.credly.com/users/daniel-mason.2a91e126/badges" target="_blank">Certifications</a>
+    Certifications
 </h1>
 <div style="display: flex;">
     <div style="flex-direction: row; text-align: center; margin-right: 20px">
