@@ -119,7 +119,7 @@ theme = 'LoveIt'
 
 # Social config about the author
   [params.social]
-    GitHub = ""
+    GitHub = "idanoo"
     Linkedin = "idanoo"
     Twitter = ""
     Instagram = ""
@@ -177,7 +177,7 @@ theme = 'LoveIt'
     # Mastodon = "@idanoo@mastodon.nz"
     Thingiverse = ""
     Devto = ""
-    Gitea = "https://tinker.nz/idanoo"
+    Gitea = ""
     XMPP = ""
     Matrix = "@idanoo:mtrx.nz"
     Bilibili = ""
