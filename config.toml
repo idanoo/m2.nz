@@ -26,11 +26,6 @@ theme = 'LoveIt'
     url = "/posts/"
     weight = 2
   [[menu.main]]
-    identifier = "tags"
-    name = "Tags"
-    url = "/tags/"
-    weight = 3
-  [[menu.main]]
     identifier = "about"
     name = "CV"
     url = "/cv/"
