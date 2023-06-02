@@ -29,6 +29,23 @@ title: "Employment History"
     </div>
 </div>
 <br/>
+<h1 style="font-size: 1.6rem;" class="animate__animated animate__pulse animate__faster">OpenSource Contributions</h1>
+2023/05/28 <a href="https://opnsense.org/" target="_blank">OpnSense</a>
+(<a href="https://github.com/opnsense/core/commit/25e2c0a301e1437a98c8958637ca405a5fab21fa" target="_blank">25e2c0a</a>)
+- Resolving static routes being created for on far gateways<br/>
+2023/01/29 <a href="https://pixelfed.org/" target="_blank">PixelFed</a>
+(<a href="https://github.com/pixelfed/pixelfed/pull/4122/commits/55dc9b0aaa4623491387d06fcb83fc9e937e5e16" target="_blank">55dc9b0</a>)
+- Resolve issue with backticks in raw SQL for postgresql migrations<br/>
+2023/01/09 <a href="https://pixelfed.org/" target="_blank">PixelFed</a>
+(<a href="https://github.com/pixelfed/pixelfed/pull/4067/commits/52d65538cdfbebc73456db15390af3cfb8ee2d46" target="_blank">52d6553</a>)
+- Update User artisan commands to match UserDelete<br/>
+2022/02/15 <a href="https://registry.terraform.io/providers/hashicorp/aws" target="_blank">terraform-provider-aws</a>
+(<a href="https://github.com/hashicorp/terraform-provider-aws/pull/23120/commits/5c45fc13a28d111abf44afe16246073dbe93c10c" target="_blank">5c45fc1</a>)
+- Allow S3 lifecycle 'days' parameter in S3 transition lifecycle to be >= 0<br/>
+2022/01/06 <a href="https://pixelfed.org/" target="_blank">PixelFed</a>
+(<a href="https://github.com/pixelfed/pixelfed/pull/3122/commits/9cc18eb82acb46d2d8da22c66d12e55c192dbdb8" target="_blank">9cc18eb</a>)
+- Fix for firstOrCreate failing hashtags with case differences on name column
+<br/><br/>
 <h1 style="font-size: 1.6rem;" class="animate__animated animate__pulse animate__faster">Employment</h1>
 <div style="display: flex;">
     <div style="flex-direction: row; margin-right: 20px">
