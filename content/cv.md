@@ -58,6 +58,10 @@ title: "Employment History"
     </div>
 </div>
 
+- Architechting and building out microservices that interface with ElasticSearch for consumers.
+- Rebuilding existing platforms to scale with a focus on performance and reporting.
+- Implementing end to end Incident workflow and tooling
+
 <br/>
 <div style="display: flex;">
     <div style="flex-direction: row; margin-right: 20px">
