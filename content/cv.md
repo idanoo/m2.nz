@@ -60,7 +60,7 @@ title: "Employment History"
 
 - Architechting and building out microservices that interface with ElasticSearch for consumers.
 - Rebuilding existing platforms to scale with a focus on performance and reporting.
-- Implementing end to end Incident workflow and tooling
+- Implementing end to end Incident workflow and tooling.
 
 <br/>
 <div style="display: flex;">
