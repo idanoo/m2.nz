@@ -70,7 +70,7 @@ title: "Employment History"
     <div style="flex-direction: row">
         <h3 style="margin-top: 5px">ezyVet</h3>
         <h4 style="margin-top:-16px; color: #afbac4">Site Reliability Engineer</h4>
-        <p style="margin-top:-20px;">August 2019 - December 2022</p>
+        <p style="margin-top:-20px;">August 2019 - December ezy2022</p>
     </div>
 </div>
 
