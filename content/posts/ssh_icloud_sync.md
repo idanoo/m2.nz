@@ -1,7 +1,8 @@
 ---
 title: "Easy syncing SSH configs on macOS"
+date: 2023-08-17T09:47:15+12:00
 tags: ["syncing", "config", "ssh"]
-date: "2023-08-17"
+draft: false
 featuredimagepreview: "/cathacker1.jpg"
 ---
 
