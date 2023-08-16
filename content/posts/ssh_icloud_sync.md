@@ -1,5 +1,5 @@
 ---
-title: "Easy syncing SSH configs on macOS"
+title: "iCloud synced SSH configs on macOS"
 date: 2023-08-17T09:47:15+12:00
 tags: ["syncing", "config", "ssh"]
 draft: false
