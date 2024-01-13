@@ -174,20 +174,11 @@ theme = 'LoveIt'
     Devto = ""
     Gitea = ""
     XMPP = ""
-    Matrix = "@idanoo:mtrx.nz"
+    Matrix = ""
     Bilibili = ""
     Email = "daniel@m2.nz"
     RSS = false # LoveIt NEW | 0.2.0
     Pixelfed = "https://pixelfed.nz/idanoo"
-    [params.social.Mastodon]
-      # weight when arranging icons (the greater the weight, the later the icon is positioned)
-      weight = 0
-      # your social ID
-      id = "@idanoo"
-      # prefix of your social link
-      prefix = "https://mastodon.nz/"
-      # content hovering on the icon
-      title = "Mastodon"
 
 
  # LoveIt CHANGED | 0.2.0 Page global config

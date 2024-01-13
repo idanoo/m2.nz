@@ -1,6 +1,6 @@
 ---
 title: "Expanding OpnSense root disk (21.7+)"
-date: 2023-08-19T14:36:30+12:00
+date: 2024-01-12T14:36:30+12:00
 draft: false
 featuredimagepreview: "/opnsense_expand.jpg"
 ---
@@ -10,7 +10,7 @@ Expanding root partition on OpnSense VM
 - Expand underlying VM disk
 - Reboot
 - Run below commands to online resize
-- Reboot for good luck
+- Reboot (Optional?)
 
 ```shell
 # View the layout
