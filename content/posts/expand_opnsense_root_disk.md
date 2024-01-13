@@ -1,7 +1,7 @@
 ---
 title: "Expanding OpnSense root disk (21.7+)"
-date: 2024-01-12T14:36:30+12:00
-draft: false
+tags: ["opnsense", "disk"]
+date: "2024-01-13"
 featuredimagepreview: "/opnsense_expand.jpg"
 ---
 

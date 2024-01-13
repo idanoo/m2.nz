@@ -1,8 +1,7 @@
 ---
 title: "iCloud synced SSH configs on macOS"
-date: 2023-08-17T09:47:15+12:00
 tags: ["syncing", "config", "ssh"]
-draft: false
+date: "2023-08-17"
 featuredimagepreview: "/cathacker1.jpg"
 ---
 
