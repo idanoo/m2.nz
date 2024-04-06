@@ -1,5 +1,5 @@
 ---
-title: "GeoIP blocking countries using nginx"
+title: "GeoIP blocking countries using Nginx"
 tags: ["nginx", "geoip", "spam", "geo block"]
 date: "2024-04-06"
 ---
