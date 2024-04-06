@@ -11,9 +11,8 @@ Install required packages & add to nginx config.
 The GeoIP DB will be under /usr/shared/GeoIP/GeoIPv6.dat (Or GeoIP.dat for v4 only):
 ```shell
 apt install -y libnginx-mod-http-geoip geoip-database
-echo 'geoip_country /usr/share/GeoIP/GeoIP.dat;' > /etc/nginx/conf.d/geoip.conf
+echo 'geoip_country /usr/share/GeoIP/GeoIPv6.dat;' > /etc/nginx/conf.d/geoip.conf
 ```
-
 
 Add this block under the main "http" block in nginx.conf:
 ```shell
