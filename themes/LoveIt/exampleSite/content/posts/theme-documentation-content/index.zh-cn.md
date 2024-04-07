@@ -7,7 +7,7 @@ draft: false
 author: "Dillon"
 authorLink: "https://dillonzq.com"
 description: "了解如何在 LoveIt 主题中快速, 直观地创建和组织内容."
-images: ["featured-image.png"]
+images: []
 resources:
 - name: "featured-image"
   src: "featured-image.jpg"
@@ -82,6 +82,7 @@ images: []
 
 tags: []
 categories: []
+
 featuredImage: ""
 featuredImagePreview: ""
 
@@ -100,12 +101,11 @@ toc:
   auto: true
 code:
   copy: true
-  # ...
+  maxShownLines: 50
 math:
-  enable: true
+  enable: false
   # ...
 mapbox:
-  accessToken: ""
   # ...
 share:
   enable: true
@@ -143,6 +143,7 @@ seo:
 
 * **tags**: 文章的标签.
 * **categories**: 文章所属的类别.
+
 * **featuredImage**: 文章的特色图片.
 * **featuredImagePreview**: 用在主页预览的文章特色图片.
 
@@ -243,6 +244,8 @@ resources:
 
 ### 数学公式
 
+{{< version 0.2.11 changed >}}
+
 **LoveIt** 基于 [$\KaTeX$](https://katex.org/) 提供数学公式的支持.
 
 在你的 [网站配置](../theme-documentation-basics#site-configuration) 中的 `[params.math]` 下面设置属性 `enable = true`,
@@ -267,7 +270,7 @@ resources:
 * `\]` -> `\\]`
 * `\\` -> `\\\\`
 
-**LoveIt** 主题支持 `raw` shortcode 以避免这些转义字符,
+**LoveIt** 主题支持 [`raw` shortcode](../theme-documentation-extended-shortcodes#12-raw) 以避免这些转义字符,
 它可以帮助您编写原始数学公式内容.
 
 一个 `raw` 示例:

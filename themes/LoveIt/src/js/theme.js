@@ -325,7 +325,19 @@ class Theme {
     }
 
     initLightGallery() {
-        if (this.config.lightGallery) lightGallery(document.getElementById('content'), this.config.lightGallery);
+        if (this.config.lightgallery) lightGallery(document.getElementById('content'), {
+            plugins: [lgThumbnail, lgZoom],
+            selector: '.lightgallery',
+            speed: 400,
+            hideBarsDelay: 2000,
+            allowMediaOverlap: true,
+            exThumbImage: 'data-thumbnail',
+            toggleThumb: true,
+            thumbWidth: 80,
+            thumbHeight: '60px',
+            actualSize: false,
+            showZoomInOutIcons: true,
+        });
     }
 
     initHighlight() {
@@ -493,26 +505,30 @@ class Theme {
     }
 
     initEcharts() {
-        this._echartsOnSwitchTheme = this._echartsOnSwitchTheme || (() => {
-            this._echartsArr = this._echartsArr || [];
-            for (let i = 0; i < this._echartsArr.length; i++) {
-                this._echartsArr[i].dispose();
-            }
-            this._echartsArr = [];
-            this.util.forEach(document.getElementsByClassName('echarts'), $echarts => {
-                const chart = echarts.init($echarts, this.isDark ? 'dark' : 'macarons', {renderer: 'svg'});
-                chart.setOption(JSON.parse(this.data[$echarts.id]));
-                this._echartsArr.push(chart);
+        if (this.config.echarts) {
+            echarts.registerTheme('light', this.config.echarts.lightTheme);
+            echarts.registerTheme('dark', this.config.echarts.darkTheme);
+            this._echartsOnSwitchTheme = this._echartsOnSwitchTheme || (() => {
+                this._echartsArr = this._echartsArr || [];
+                for (let i = 0; i < this._echartsArr.length; i++) {
+                    this._echartsArr[i].dispose();
+                }
+                this._echartsArr = [];
+                this.util.forEach(document.getElementsByClassName('echarts'), $echarts => {
+                    const chart = echarts.init($echarts, this.isDark ? 'dark' : 'light', {renderer: 'svg'});
+                    chart.setOption(JSON.parse(this.data[$echarts.id]));
+                    this._echartsArr.push(chart);
+                });
             });
-        });
-        this.switchThemeEventSet.add(this._echartsOnSwitchTheme);
-        this._echartsOnSwitchTheme();
-        this._echartsOnResize = this._echartsOnResize || (() => {
-            for (let i = 0; i < this._echartsArr.length; i++) {
-                this._echartsArr[i].resize();
-            }
-        });
-        this.resizeEventSet.add(this._echartsOnResize);
+            this.switchThemeEventSet.add(this._echartsOnSwitchTheme);
+            this._echartsOnSwitchTheme();
+            this._echartsOnResize = this._echartsOnResize || (() => {
+                for (let i = 0; i < this._echartsArr.length; i++) {
+                    this._echartsArr[i].resize();
+                }
+            });
+            this.resizeEventSet.add(this._echartsOnResize);
+        }
     }
 
     initMapbox() {
@@ -629,16 +645,40 @@ class Theme {
                 });
                 this.switchThemeEventSet.add(this._utterancesOnSwitchTheme);
             }
-        }
-    }
 
-    initSmoothScroll() {
-        if (SmoothScroll) new SmoothScroll('[href^="#"]', {
-            speed: 300,
-            speedAsDuration: true,
-            header: '#header-desktop',
-            offset: 10,
-        });
+            if (this.config.comment.giscus) {
+                const giscusConfig = this.config.comment.giscus;
+                const giscusScript = document.createElement('script');
+                giscusScript.src = 'https://giscus.app/client.js';
+                giscusScript.type = 'text/javascript';
+                giscusScript.setAttribute('data-repo', giscusConfig.repo);
+                giscusScript.setAttribute('data-repo-id', giscusConfig.repoId);
+                giscusScript.setAttribute('data-category', giscusConfig.category);
+                giscusScript.setAttribute('data-category-id', giscusConfig.categoryId);
+                giscusScript.setAttribute('data-lang', giscusConfig.lang);
+                giscusScript.setAttribute('data-mapping', giscusConfig.mapping);
+                giscusScript.setAttribute('data-reactions-enabled', giscusConfig.reactionsEnabled);
+                giscusScript.setAttribute('data-emit-metadata', giscusConfig.emitMetadata);
+                giscusScript.setAttribute('data-input-position', giscusConfig.inputPosition);
+                if (giscusConfig.lazyLoading) giscusScript.setAttribute('data-loading', 'lazy');
+                giscusScript.setAttribute('data-theme', this.isDark ? giscusConfig.darkTheme : giscusConfig.lightTheme);
+                giscusScript.crossOrigin = 'anonymous';
+                giscusScript.async = true;
+                document.getElementById('giscus').appendChild(giscusScript);
+                this._giscusOnSwitchTheme = this._giscusOnSwitchTheme || (() => {
+                    const message = {
+                        setConfig: {
+                            theme: this.isDark ? giscusConfig.darkTheme : giscusConfig.lightTheme,
+                            reactionsEnabled: false,
+                        }
+                    };
+                    const iframe = document.querySelector('iframe.giscus-frame');
+                    if (!iframe) return;
+                    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+                });
+                this.switchThemeEventSet.add(this._giscusOnSwitchTheme);
+            }
+        }
     }
 
     initCookieconsent() {
@@ -685,9 +725,7 @@ class Theme {
                 }
                 $fixedButtons.style.display = 'none';
             }
-            for (let event of this.scrollEventSet) window.setTimeout(() => {
-                event();
-            }, 100);;
+            for (let event of this.scrollEventSet) event();
             this.oldScrollTop = this.newScrollTop;
         }, false);
     }
@@ -726,7 +764,6 @@ class Theme {
             this.initHighlight();
             this.initTable();
             this.initHeaderLink();
-            this.initSmoothScroll();
             this.initMath();
             this.initMermaid();
             this.initEcharts();

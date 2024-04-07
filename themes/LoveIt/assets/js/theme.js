@@ -454,7 +454,19 @@ var Theme = /*#__PURE__*/function () {
   }, {
     key: "initLightGallery",
     value: function initLightGallery() {
-      if (this.config.lightGallery) lightGallery(document.getElementById('content'), this.config.lightGallery);
+      if (this.config.lightgallery) lightGallery(document.getElementById('content'), {
+        plugins: [lgThumbnail, lgZoom],
+        selector: '.lightgallery',
+        speed: 400,
+        hideBarsDelay: 2000,
+        allowMediaOverlap: true,
+        exThumbImage: 'data-thumbnail',
+        toggleThumb: true,
+        thumbWidth: 80,
+        thumbHeight: '60px',
+        actualSize: false,
+        showZoomInOutIcons: true
+      });
     }
   }, {
     key: "initHighlight",
@@ -666,36 +678,41 @@ var Theme = /*#__PURE__*/function () {
     value: function initEcharts() {
       var _this8 = this;
 
-      this._echartsOnSwitchTheme = this._echartsOnSwitchTheme || function () {
-        _this8._echartsArr = _this8._echartsArr || [];
+      if (this.config.echarts) {
+        echarts.registerTheme('light', this.config.echarts.lightTheme);
+        echarts.registerTheme('dark', this.config.echarts.darkTheme);
 
-        for (var i = 0; i < _this8._echartsArr.length; i++) {
-          _this8._echartsArr[i].dispose();
-        }
+        this._echartsOnSwitchTheme = this._echartsOnSwitchTheme || function () {
+          _this8._echartsArr = _this8._echartsArr || [];
 
-        _this8._echartsArr = [];
+          for (var i = 0; i < _this8._echartsArr.length; i++) {
+            _this8._echartsArr[i].dispose();
+          }
 
-        _this8.util.forEach(document.getElementsByClassName('echarts'), function ($echarts) {
-          var chart = echarts.init($echarts, _this8.isDark ? 'dark' : 'macarons', {
-            renderer: 'svg'
+          _this8._echartsArr = [];
+
+          _this8.util.forEach(document.getElementsByClassName('echarts'), function ($echarts) {
+            var chart = echarts.init($echarts, _this8.isDark ? 'dark' : 'light', {
+              renderer: 'svg'
+            });
+            chart.setOption(JSON.parse(_this8.data[$echarts.id]));
+
+            _this8._echartsArr.push(chart);
           });
-          chart.setOption(JSON.parse(_this8.data[$echarts.id]));
+        };
 
-          _this8._echartsArr.push(chart);
-        });
-      };
+        this.switchThemeEventSet.add(this._echartsOnSwitchTheme);
 
-      this.switchThemeEventSet.add(this._echartsOnSwitchTheme);
+        this._echartsOnSwitchTheme();
 
-      this._echartsOnSwitchTheme();
+        this._echartsOnResize = this._echartsOnResize || function () {
+          for (var i = 0; i < _this8._echartsArr.length; i++) {
+            _this8._echartsArr[i].resize();
+          }
+        };
 
-      this._echartsOnResize = this._echartsOnResize || function () {
-        for (var i = 0; i < _this8._echartsArr.length; i++) {
-          _this8._echartsArr[i].resize();
-        }
-      };
-
-      this.resizeEventSet.add(this._echartsOnResize);
+        this.resizeEventSet.add(this._echartsOnResize);
+      }
     }
   }, {
     key: "initMapbox",
@@ -848,17 +865,44 @@ var Theme = /*#__PURE__*/function () {
 
           this.switchThemeEventSet.add(this._utterancesOnSwitchTheme);
         }
+
+        if (this.config.comment.giscus) {
+          var giscusConfig = this.config.comment.giscus;
+          var giscusScript = document.createElement('script');
+          giscusScript.src = 'https://giscus.app/client.js';
+          giscusScript.type = 'text/javascript';
+          giscusScript.setAttribute('data-repo', giscusConfig.repo);
+          giscusScript.setAttribute('data-repo-id', giscusConfig.repoId);
+          giscusScript.setAttribute('data-category', giscusConfig.category);
+          giscusScript.setAttribute('data-category-id', giscusConfig.categoryId);
+          giscusScript.setAttribute('data-lang', giscusConfig.lang);
+          giscusScript.setAttribute('data-mapping', giscusConfig.mapping);
+          giscusScript.setAttribute('data-reactions-enabled', giscusConfig.reactionsEnabled);
+          giscusScript.setAttribute('data-emit-metadata', giscusConfig.emitMetadata);
+          giscusScript.setAttribute('data-input-position', giscusConfig.inputPosition);
+          if (giscusConfig.lazyLoading) giscusScript.setAttribute('data-loading', 'lazy');
+          giscusScript.setAttribute('data-theme', this.isDark ? giscusConfig.darkTheme : giscusConfig.lightTheme);
+          giscusScript.crossOrigin = 'anonymous';
+          giscusScript.async = true;
+          document.getElementById('giscus').appendChild(giscusScript);
+
+          this._giscusOnSwitchTheme = this._giscusOnSwitchTheme || function () {
+            var message = {
+              setConfig: {
+                theme: _this11.isDark ? giscusConfig.darkTheme : giscusConfig.lightTheme,
+                reactionsEnabled: false
+              }
+            };
+            var iframe = document.querySelector('iframe.giscus-frame');
+            if (!iframe) return;
+            iframe.contentWindow.postMessage({
+              giscus: message
+            }, 'https://giscus.app');
+          };
+
+          this.switchThemeEventSet.add(this._giscusOnSwitchTheme);
+        }
       }
-    }
-  }, {
-    key: "initSmoothScroll",
-    value: function initSmoothScroll() {
-      if (SmoothScroll) new SmoothScroll('[href^="#"]', {
-        speed: 300,
-        speedAsDuration: true,
-        header: '#header-desktop',
-        offset: 10
-      });
     }
   }, {
     key: "initCookieconsent",
@@ -926,15 +970,9 @@ var Theme = /*#__PURE__*/function () {
             _step2;
 
         try {
-          var _loop = function _loop() {
-            var event = _step2.value;
-            window.setTimeout(function () {
-              event();
-            }, 100);
-          };
-
           for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-            _loop();
+            var event = _step2.value;
+            event();
           }
         } catch (err) {
           _iterator2.e(err);
@@ -942,7 +980,6 @@ var Theme = /*#__PURE__*/function () {
           _iterator2.f();
         }
 
-        ;
         _this12.oldScrollTop = _this12.newScrollTop;
       }, false);
     }
@@ -1019,7 +1056,6 @@ var Theme = /*#__PURE__*/function () {
         this.initHighlight();
         this.initTable();
         this.initHeaderLink();
-        this.initSmoothScroll();
         this.initMath();
         this.initMermaid();
         this.initEcharts();
