@@ -62,9 +62,11 @@ Working with a wide range of technologies and teams to deliver resiliant, secure
 
 - Airflow to move and transform data between services.
 - EKS Kubernetes Clusters.
-- Golang APIs deployed into EKS.
-- Packer/HCL building custom AMIs including common Linux distros and Server 2022.
+- Golang APIs deployed with Helm into EKS.
+- Migrating legacy AWS resources into Terraform.
+- Packer/HCL building custom Linux/Windows AMIs.
 - Rebuilding existing platforms to scale with a focus on performance and reporting.
+  
 <br/>
 <div style="display: flex;">
     <div style="flex-direction: row; margin-right: 20px">
