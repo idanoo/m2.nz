@@ -11,11 +11,6 @@
         {{- partial "head/meta.html" . -}}
         {{- partial "head/link.html" . -}}
         {{- partial "head/seo.html" . -}}
-
-        <noscript>
-            <img src="https://stats.deadnet.nz/ingress/1800f47d-a7e3-4c81-a4cb-4605091940ba/pixel.gif">
-        </noscript>
-        <script defer src="https://stats.deadnet.nz/ingress/1800f47d-a7e3-4c81-a4cb-4605091940ba/script.js"></script>
     </head>
     <body data-header-desktop="{{ .Site.Params.header.desktopMode }}" data-header-mobile="{{ .Site.Params.header.mobileMode }}">
         {{- /* Check theme isDark before body rendering */ -}}
