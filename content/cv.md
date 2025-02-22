@@ -60,8 +60,10 @@ title: "Employment History"
 
 Working with a wide range of technologies and teams to deliver resiliant, secure and performant services.
 
+- Database migrations, maintenance and patching.
 - Airflow to move and transform data between services.
 - EKS Kubernetes Clusters.
+- ElasticSearch migrations, maintenance and patching.
 - Golang APIs deployed with Helm into EKS.
 - Migrating legacy AWS resources into Terraform.
 - Packer/HCL building custom Linux/Windows AMIs.
