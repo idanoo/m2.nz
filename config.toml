@@ -72,7 +72,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   description = "m2.nz - Daniel Mason"
   # website images for Open Graph and Twitter Cards
   images = ["/avatar.png"]
-
+  
 # Author config
   [params.author]
     name = "Daniel Mason"
@@ -527,7 +527,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
   #  Cookie consent config
   [params.cookieconsent]
-    enable = true
+    enable = false
     # text strings used for Cookie consent banner
     [params.cookieconsent.content]
       message = ""
