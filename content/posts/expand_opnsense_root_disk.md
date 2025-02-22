@@ -1,8 +1,8 @@
 ---
 title: "Expanding OpnSense root disk (21.7+)"
 tags: ["opnsense", "disk"]
-date: "2024-01-13"
-featuredimagepreview: "/opnsense_expand.jpg"
+date: 2024-01-13
+# featuredimagepreview: "/opnsense_expand.jpg"
 ---
 
 Expanding root partition on OpnSense VM

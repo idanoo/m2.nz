@@ -1,8 +1,8 @@
 ---
 title: "Configuring an APRS receiver with an RTL-SDR and Direwolf"
 tags: ["aprs", "amateur radio", "direwolf"]
-date: "2021-12-16"
-featuredimagepreview: "/aprs.jpg"
+date: 2021-12-16
+# featuredimagepreview: "/aprs.jpg"
 ---
 
 What is APRS? Automatic Packet Reporting System! Essentially a VHF radio sending out GPS location pings in the 2M ham band which can be seen at [aprs.fi](https://aprs.fi/). If you take a look at that link you will often see radiosondes and their reported data, weather stations as well as bunch of amateur operators transmitting data all over the world. Fascinating stuff.

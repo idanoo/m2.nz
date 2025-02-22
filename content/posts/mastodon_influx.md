@@ -1,8 +1,8 @@
 ---
 title: "Mastodon.nz and the recent twitter influx"
 tags: ["mastodon", "twitter", "self hosting"]
-date: "2022-05-09"
-featuredimagepreview: "/server1.jpg"
+date: 2022-05-09
+# featuredimagepreview: "/server1.jpg"
 ---
 
 Where to begin.. It's been an interesting fortnight!

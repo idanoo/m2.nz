@@ -1,7 +1,7 @@
 ---
 title: "GeoIP blocking countries using Nginx"
 tags: ["nginx", "geoip", "spam", "geo block"]
-date: "2024-04-06"
+date: 2024-04-06
 ---
 
 Quick and easy way to block entire countries using simple nginx rules.

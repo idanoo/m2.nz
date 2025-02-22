@@ -1,8 +1,8 @@
 ---
 title: "iCloud synced SSH configs on macOS"
 tags: ["syncing", "config", "ssh"]
-date: "2023-08-17"
-featuredimagepreview: "/cathacker1.jpg"
+date: 2023-08-17
+# featuredimagepreview: "/cathacker1.jpg"
 ---
 
 Maintaining SSH configs can be a pain when you're hopping between multiple devices, even more when syncing apps (Synology/NextCloud/etc) are blocked on some networks/devices.

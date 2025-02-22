@@ -2,6 +2,14 @@
 
 function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -27,7 +35,7 @@ var Util = /*#__PURE__*/function () {
     _classCallCheck(this, Util);
   }
 
-  _createClass(Util, [{
+  _createClass(Util, null, [{
     key: "forEach",
     value: function forEach(elements, handler) {
       elements = elements || [];
@@ -83,8 +91,7 @@ var Theme = /*#__PURE__*/function () {
     this.config = window.config;
     this.data = this.config.data;
     this.isDark = document.body.getAttribute('theme') === 'dark';
-    this.util = new Util();
-    this.newScrollTop = this.util.getScrollTop();
+    this.newScrollTop = Util.getScrollTop();
     this.oldScrollTop = this.newScrollTop;
     this.scrollEventSet = new Set();
     this.resizeEventSet = new Set();
@@ -98,14 +105,14 @@ var Theme = /*#__PURE__*/function () {
     value: function initRaw() {
       var _this = this;
 
-      this.util.forEach(document.querySelectorAll('[data-raw]'), function ($raw) {
+      Util.forEach(document.querySelectorAll('[data-raw]'), function ($raw) {
         $raw.innerHTML = _this.data[$raw.id];
       });
     }
   }, {
     key: "initSVGIcon",
     value: function initSVGIcon() {
-      this.util.forEach(document.querySelectorAll('[data-svg-src]'), function ($icon) {
+      Util.forEach(document.querySelectorAll('[data-svg-src]'), function ($icon) {
         fetch($icon.getAttribute('data-svg-src')).then(function (response) {
           return response.text();
         }).then(function (svg) {
@@ -150,7 +157,7 @@ var Theme = /*#__PURE__*/function () {
     value: function initSwitchTheme() {
       var _this2 = this;
 
-      this.util.forEach(document.getElementsByClassName('theme-switch'), function ($themeSwitch) {
+      Util.forEach(document.getElementsByClassName('theme-switch'), function ($themeSwitch) {
         $themeSwitch.addEventListener('click', function () {
           if (document.body.getAttribute('theme') === 'dark') document.body.setAttribute('theme', 'light');else document.body.setAttribute('theme', 'dark');
           _this2.isDark = !_this2.isDark;
@@ -178,7 +185,7 @@ var Theme = /*#__PURE__*/function () {
       var _this3 = this;
 
       var searchConfig = this.config.search;
-      var isMobile = this.util.isMobile();
+      var isMobile = Util.isMobile();
       if (!searchConfig || isMobile && this._searchMobileOnce || !isMobile && this._searchDesktopOnce) return;
       var maxResultLength = searchConfig.maxResultLength ? searchConfig.maxResultLength : 10;
       var snippetLength = searchConfig.snippetLength ? searchConfig.snippetLength : 50;
@@ -291,10 +298,10 @@ var Theme = /*#__PURE__*/function () {
                   position -= snippetLength / 5;
 
                   if (position > 0) {
-                    position += context.substr(position, 20).lastIndexOf(' ') + 1;
-                    context = '...' + context.substr(position, snippetLength);
+                    position += context.slice(position, position + 20).lastIndexOf(' ') + 1;
+                    context = '...' + context.slice(position, position + snippetLength);
                   } else {
-                    context = context.substr(0, snippetLength);
+                    context = context.slice(0, snippetLength);
                   }
 
                   Object.keys(metadata).forEach(function (key) {
@@ -349,17 +356,24 @@ var Theme = /*#__PURE__*/function () {
                 });
               } else finish(search());
             } else if (searchConfig.type === 'algolia') {
-              _this3._algoliaIndex = _this3._algoliaIndex || algoliasearch(searchConfig.algoliaAppID, searchConfig.algoliaSearchKey).initIndex(searchConfig.algoliaIndex);
+              var algoliasearch = window['algoliasearch/lite'].liteClient;
+              _this3._algoliaIndex = _this3._algoliaIndex || algoliasearch(searchConfig.algoliaAppID, searchConfig.algoliaSearchKey);
 
-              _this3._algoliaIndex.search(query, {
-                offset: 0,
-                length: maxResultLength * 8,
-                attributesToHighlight: ['title'],
-                attributesToSnippet: ["content:".concat(snippetLength)],
-                highlightPreTag: "<".concat(highlightTag, ">"),
-                highlightPostTag: "</".concat(highlightTag, ">")
+              _this3._algoliaIndex.search({
+                requests: [{
+                  indexName: searchConfig.algoliaIndex,
+                  query: query,
+                  offset: 0,
+                  length: maxResultLength * 8,
+                  attributesToHighlight: ['title'],
+                  attributesToSnippet: ["content:".concat(snippetLength)],
+                  highlightPreTag: "<".concat(highlightTag, ">"),
+                  highlightPostTag: "</".concat(highlightTag, ">")
+                }]
               }).then(function (_ref3) {
-                var hits = _ref3.hits;
+                var _ref3$results = _slicedToArray(_ref3.results, 1),
+                    hits = _ref3$results[0].hits;
+
                 var results = {};
                 hits.forEach(function (_ref4) {
                   var uri = _ref4.uri,
@@ -427,7 +441,7 @@ var Theme = /*#__PURE__*/function () {
 
         if (script.readyState) {
           script.onreadystatechange = function () {
-            if (script.readyState == 'loaded' || script.readyState == 'complete') {
+            if (script.readyState === 'loaded' || script.readyState === 'complete') {
               script.onreadystatechange = null;
               initAutosearch();
             }
@@ -444,7 +458,7 @@ var Theme = /*#__PURE__*/function () {
   }, {
     key: "initDetails",
     value: function initDetails() {
-      this.util.forEach(document.getElementsByClassName('details'), function ($details) {
+      Util.forEach(document.getElementsByClassName('details'), function ($details) {
         var $summary = $details.getElementsByClassName('details-summary')[0];
         $summary.addEventListener('click', function () {
           $details.classList.toggle('open');
@@ -471,78 +485,45 @@ var Theme = /*#__PURE__*/function () {
   }, {
     key: "initHighlight",
     value: function initHighlight() {
-      var _this5 = this;
+      Util.forEach(document.querySelectorAll('.code-block'), function ($codeBlock) {
+        var $codeTitle = $codeBlock.querySelector('.code-header > .code-title');
 
-      this.util.forEach(document.querySelectorAll('.highlight > pre.chroma'), function ($preChroma) {
-        var $chroma = document.createElement('div');
-        $chroma.className = $preChroma.className;
-        var $table = document.createElement('table');
-        $chroma.appendChild($table);
-        var $tbody = document.createElement('tbody');
-        $table.appendChild($tbody);
-        var $tr = document.createElement('tr');
-        $tbody.appendChild($tr);
-        var $td = document.createElement('td');
-        $tr.appendChild($td);
-        $preChroma.parentElement.replaceChild($chroma, $preChroma);
-        $td.appendChild($preChroma);
-      });
-      this.util.forEach(document.querySelectorAll('.highlight > .chroma'), function ($chroma) {
-        var $codeElements = $chroma.querySelectorAll('pre.chroma > code');
-
-        if ($codeElements.length) {
-          var $code = $codeElements[$codeElements.length - 1];
-          var $header = document.createElement('div');
-          $header.className = 'code-header ' + $code.className.toLowerCase();
-          var $title = document.createElement('span');
-          $title.classList.add('code-title');
-          $title.insertAdjacentHTML('afterbegin', '<i class="arrow fas fa-chevron-right fa-fw" aria-hidden="true"></i>');
-          $title.addEventListener('click', function () {
-            $chroma.classList.toggle('open');
+        if ($codeTitle) {
+          $codeTitle.addEventListener('click', function () {
+            $codeBlock.classList.toggle('open');
           }, false);
-          $header.appendChild($title);
-          var $ellipses = document.createElement('span');
-          $ellipses.insertAdjacentHTML('afterbegin', '<i class="fas fa-ellipsis-h fa-fw" aria-hidden="true"></i>');
-          $ellipses.classList.add('ellipses');
-          $ellipses.addEventListener('click', function () {
-            $chroma.classList.add('open');
-          }, false);
-          $header.appendChild($ellipses);
-          var $copy = document.createElement('span');
-          $copy.insertAdjacentHTML('afterbegin', '<i class="far fa-copy fa-fw" aria-hidden="true"></i>');
-          $copy.classList.add('copy');
-          var code = $code.innerText;
-          if (_this5.config.code.maxShownLines < 0 || code.split('\n').length < _this5.config.code.maxShownLines + 2) $chroma.classList.add('open');
-
-          if (_this5.config.code.copyTitle) {
-            $copy.setAttribute('data-clipboard-text', code);
-            $copy.title = _this5.config.code.copyTitle;
-            var clipboard = new ClipboardJS($copy);
-            clipboard.on('success', function (_e) {
-              _this5.util.animateCSS($code, 'animate__flash');
-            });
-            $header.appendChild($copy);
-          }
-
-          $chroma.insertBefore($header, $chroma.firstChild);
         }
-      });
-    }
-  }, {
-    key: "initTable",
-    value: function initTable() {
-      this.util.forEach(document.querySelectorAll('.content table'), function ($table) {
-        var $wrapper = document.createElement('div');
-        $wrapper.className = 'table-wrapper';
-        $table.parentElement.replaceChild($wrapper, $table);
-        $wrapper.appendChild($table);
+
+        var $ellipses = $codeBlock.querySelector('.code-header .ellipses');
+
+        if ($ellipses) {
+          $ellipses.addEventListener('click', function () {
+            $codeBlock.classList.toggle('open');
+          }, false);
+        }
+
+        var $copy = $codeBlock.querySelector('.code-header .copy');
+
+        if ($copy) {
+          var $code = $codeBlock.querySelector('code');
+          $copy.setAttribute('data-clipboard-text', $code.innerText);
+          var clipboard = new ClipboardJS($copy);
+          var $codeLines = $code.querySelectorAll('span.cl');
+          clipboard.on('success', function (_e) {
+            if ($codeLines) {
+              Util.forEach($codeLines, function ($codeLine) {
+                return Util.animateCSS($codeLine, 'animate__flash');
+              });
+            }
+          });
+        }
       });
     }
   }, {
     key: "initHeaderLink",
     value: function initHeaderLink() {
       for (var num = 1; num <= 6; num++) {
-        this.util.forEach(document.querySelectorAll('.single .content > h' + num), function ($header) {
+        Util.forEach(document.querySelectorAll('.single .content > h' + num), function ($header) {
           $header.classList.add('headerLink');
           $header.insertAdjacentHTML('afterbegin', "<a href=\"#".concat($header.id, "\" class=\"header-mark\"></a>"));
         });
@@ -551,12 +532,12 @@ var Theme = /*#__PURE__*/function () {
   }, {
     key: "initToc",
     value: function initToc() {
-      var _this6 = this;
+      var _this5 = this;
 
       var $tocCore = document.getElementById('TableOfContents');
       if ($tocCore === null) return;
 
-      if (document.getElementById('toc-static').getAttribute('data-kept') || this.util.isTocStatic()) {
+      if (document.getElementById('toc-static').getAttribute('data-kept') || Util.isTocStatic()) {
         var $tocContentStatic = document.getElementById('toc-content-static');
 
         if ($tocCore.parentElement !== $tocContentStatic) {
@@ -593,10 +574,10 @@ var Theme = /*#__PURE__*/function () {
           var maxTocTop = footerTop - $toc.getBoundingClientRect().height;
           var maxScrollTop = maxTocTop - TOP_SPACING + (headerIsFixed ? 0 : headerHeight);
 
-          if (_this6.newScrollTop < minScrollTop) {
+          if (_this5.newScrollTop < minScrollTop) {
             $toc.style.position = 'absolute';
             $toc.style.top = "".concat(minTocTop, "px");
-          } else if (_this6.newScrollTop > maxScrollTop) {
+          } else if (_this5.newScrollTop > maxScrollTop) {
             $toc.style.position = 'absolute';
             $toc.style.top = "".concat(maxTocTop, "px");
           } else {
@@ -604,14 +585,12 @@ var Theme = /*#__PURE__*/function () {
             $toc.style.top = "".concat(TOP_SPACING, "px");
           }
 
-          _this6.util.forEach($tocLinkElements, function ($tocLink) {
+          Util.forEach($tocLinkElements, function ($tocLink) {
             $tocLink.classList.remove('active');
           });
-
-          _this6.util.forEach($tocLiElements, function ($tocLi) {
+          Util.forEach($tocLiElements, function ($tocLi) {
             $tocLi.classList.remove('has-active');
           });
-
           var INDEX_SPACING = 20 + (headerIsFixed ? headerHeight : 0);
           var activeTocIndex = $headerLinkElements.length - 1;
 
@@ -619,7 +598,7 @@ var Theme = /*#__PURE__*/function () {
             var thisTop = $headerLinkElements[i].getBoundingClientRect().top;
             var nextTop = $headerLinkElements[i + 1].getBoundingClientRect().top;
 
-            if (i == 0 && thisTop > INDEX_SPACING || thisTop <= INDEX_SPACING && nextTop > INDEX_SPACING) {
+            if (i === 0 && thisTop > INDEX_SPACING || thisTop <= INDEX_SPACING && nextTop > INDEX_SPACING) {
               activeTocIndex = i;
               break;
             }
@@ -649,7 +628,7 @@ var Theme = /*#__PURE__*/function () {
   }, {
     key: "initMermaid",
     value: function initMermaid() {
-      var _this7 = this;
+      var _this6 = this;
 
       this._mermaidOnSwitchTheme = this._mermaidOnSwitchTheme || function () {
         var $mermaidElements = document.getElementsByClassName('mermaid');
@@ -657,12 +636,11 @@ var Theme = /*#__PURE__*/function () {
         if ($mermaidElements.length) {
           mermaid.initialize({
             startOnLoad: false,
-            theme: _this7.isDark ? 'dark' : 'neutral',
+            theme: _this6.isDark ? 'dark' : 'neutral',
             securityLevel: 'loose'
           });
-
-          _this7.util.forEach($mermaidElements, function ($mermaid) {
-            mermaid.render('svg-' + $mermaid.id, _this7.data[$mermaid.id], function (svgCode) {
+          Util.forEach($mermaidElements, function ($mermaid) {
+            mermaid.render('svg-' + $mermaid.id, _this6.data[$mermaid.id], function (svgCode) {
               $mermaid.innerHTML = svgCode;
             }, $mermaid);
           });
@@ -676,28 +654,27 @@ var Theme = /*#__PURE__*/function () {
   }, {
     key: "initEcharts",
     value: function initEcharts() {
-      var _this8 = this;
+      var _this7 = this;
 
       if (this.config.echarts) {
         echarts.registerTheme('light', this.config.echarts.lightTheme);
         echarts.registerTheme('dark', this.config.echarts.darkTheme);
 
         this._echartsOnSwitchTheme = this._echartsOnSwitchTheme || function () {
-          _this8._echartsArr = _this8._echartsArr || [];
+          _this7._echartsArr = _this7._echartsArr || [];
 
-          for (var i = 0; i < _this8._echartsArr.length; i++) {
-            _this8._echartsArr[i].dispose();
+          for (var i = 0; i < _this7._echartsArr.length; i++) {
+            _this7._echartsArr[i].dispose();
           }
 
-          _this8._echartsArr = [];
-
-          _this8.util.forEach(document.getElementsByClassName('echarts'), function ($echarts) {
-            var chart = echarts.init($echarts, _this8.isDark ? 'dark' : 'light', {
+          _this7._echartsArr = [];
+          Util.forEach(document.getElementsByClassName('echarts'), function ($echarts) {
+            var chart = echarts.init($echarts, _this7.isDark ? 'dark' : 'light', {
               renderer: 'svg'
             });
-            chart.setOption(JSON.parse(_this8.data[$echarts.id]));
+            chart.setOption(JSON.parse(_this7.data[$echarts.id]));
 
-            _this8._echartsArr.push(chart);
+            _this7._echartsArr.push(chart);
           });
         };
 
@@ -706,8 +683,8 @@ var Theme = /*#__PURE__*/function () {
         this._echartsOnSwitchTheme();
 
         this._echartsOnResize = this._echartsOnResize || function () {
-          for (var i = 0; i < _this8._echartsArr.length; i++) {
-            _this8._echartsArr[i].resize();
+          for (var i = 0; i < _this7._echartsArr.length; i++) {
+            _this7._echartsArr[i].resize();
           }
         };
 
@@ -717,30 +694,30 @@ var Theme = /*#__PURE__*/function () {
   }, {
     key: "initMapbox",
     value: function initMapbox() {
-      var _this9 = this;
+      var _this8 = this;
 
       if (this.config.mapbox) {
         mapboxgl.accessToken = this.config.mapbox.accessToken;
         mapboxgl.setRTLTextPlugin(this.config.mapbox.RTLTextPlugin);
         this._mapboxArr = this._mapboxArr || [];
-        this.util.forEach(document.getElementsByClassName('mapbox'), function ($mapbox) {
-          var _this9$data$$mapbox$i = _this9.data[$mapbox.id],
-              lng = _this9$data$$mapbox$i.lng,
-              lat = _this9$data$$mapbox$i.lat,
-              zoom = _this9$data$$mapbox$i.zoom,
-              lightStyle = _this9$data$$mapbox$i.lightStyle,
-              darkStyle = _this9$data$$mapbox$i.darkStyle,
-              marked = _this9$data$$mapbox$i.marked,
-              navigation = _this9$data$$mapbox$i.navigation,
-              geolocate = _this9$data$$mapbox$i.geolocate,
-              scale = _this9$data$$mapbox$i.scale,
-              fullscreen = _this9$data$$mapbox$i.fullscreen;
+        Util.forEach(document.getElementsByClassName('mapbox'), function ($mapbox) {
+          var _this8$data$$mapbox$i = _this8.data[$mapbox.id],
+              lng = _this8$data$$mapbox$i.lng,
+              lat = _this8$data$$mapbox$i.lat,
+              zoom = _this8$data$$mapbox$i.zoom,
+              lightStyle = _this8$data$$mapbox$i.lightStyle,
+              darkStyle = _this8$data$$mapbox$i.darkStyle,
+              marked = _this8$data$$mapbox$i.marked,
+              navigation = _this8$data$$mapbox$i.navigation,
+              geolocate = _this8$data$$mapbox$i.geolocate,
+              scale = _this8$data$$mapbox$i.scale,
+              fullscreen = _this8$data$$mapbox$i.fullscreen;
           var mapbox = new mapboxgl.Map({
             container: $mapbox,
             center: [lng, lat],
             zoom: zoom,
             minZoom: .2,
-            style: _this9.isDark ? darkStyle : lightStyle,
+            style: _this8.isDark ? darkStyle : lightStyle,
             attributionControl: false
           });
 
@@ -772,16 +749,16 @@ var Theme = /*#__PURE__*/function () {
 
           mapbox.addControl(new MapboxLanguage());
 
-          _this9._mapboxArr.push(mapbox);
+          _this8._mapboxArr.push(mapbox);
         });
 
         this._mapboxOnSwitchTheme = this._mapboxOnSwitchTheme || function () {
-          _this9.util.forEach(_this9._mapboxArr, function (mapbox) {
+          Util.forEach(_this8._mapboxArr, function (mapbox) {
             var $mapbox = mapbox.getContainer();
-            var _this9$data$$mapbox$i2 = _this9.data[$mapbox.id],
-                lightStyle = _this9$data$$mapbox$i2.lightStyle,
-                darkStyle = _this9$data$$mapbox$i2.darkStyle;
-            mapbox.setStyle(_this9.isDark ? darkStyle : lightStyle);
+            var _this8$data$$mapbox$i2 = _this8.data[$mapbox.id],
+                lightStyle = _this8$data$$mapbox$i2.lightStyle,
+                darkStyle = _this8$data$$mapbox$i2.darkStyle;
+            mapbox.setStyle(_this8.isDark ? darkStyle : lightStyle);
             mapbox.addControl(new MapboxLanguage());
           });
         };
@@ -792,7 +769,7 @@ var Theme = /*#__PURE__*/function () {
   }, {
     key: "initTypeit",
     value: function initTypeit() {
-      var _this10 = this;
+      var _this9 = this;
 
       if (this.config.typeit) {
         var typeitConfig = this.config.typeit;
@@ -802,8 +779,8 @@ var Theme = /*#__PURE__*/function () {
         Object.values(typeitConfig.data).forEach(function (group) {
           var typeone = function typeone(i) {
             var id = group[i];
-            var instance = new TypeIt("#".concat(id), {
-              strings: _this10.data[id],
+            new TypeIt("#".concat(id), {
+              strings: _this9.data[id],
               speed: speed,
               lifeLike: true,
               cursorSpeed: cursorSpeed,
@@ -830,7 +807,7 @@ var Theme = /*#__PURE__*/function () {
   }, {
     key: "initComment",
     value: function initComment() {
-      var _this11 = this;
+      var _this10 = this;
 
       if (this.config.comment) {
         if (this.config.comment.gitalk) {
@@ -857,7 +834,7 @@ var Theme = /*#__PURE__*/function () {
           this._utterancesOnSwitchTheme = this._utterancesOnSwitchTheme || function () {
             var message = {
               type: 'set-theme',
-              theme: _this11.isDark ? utterancesConfig.darkTheme : utterancesConfig.lightTheme
+              theme: _this10.isDark ? utterancesConfig.darkTheme : utterancesConfig.lightTheme
             };
             var iframe = document.querySelector('.utterances-frame');
             iframe.contentWindow.postMessage(message, 'https://utteranc.es');
@@ -889,7 +866,7 @@ var Theme = /*#__PURE__*/function () {
           this._giscusOnSwitchTheme = this._giscusOnSwitchTheme || function () {
             var message = {
               setConfig: {
-                theme: _this11.isDark ? giscusConfig.darkTheme : giscusConfig.lightTheme,
+                theme: _this10.isDark ? giscusConfig.darkTheme : giscusConfig.lightTheme,
                 reactionsEnabled: false
               }
             };
@@ -912,7 +889,7 @@ var Theme = /*#__PURE__*/function () {
   }, {
     key: "onScroll",
     value: function onScroll() {
-      var _this12 = this;
+      var _this11 = this;
 
       var $headers = [];
       if (document.body.getAttribute('data-header-desktop') === 'auto') $headers.push(document.getElementById('header-desktop'));
@@ -921,52 +898,46 @@ var Theme = /*#__PURE__*/function () {
       if (document.getElementById('comments')) {
         var $viewComments = document.getElementById('view-comments');
         $viewComments.href = "#comments";
-        $viewComments.style.display = 'block';
+        $viewComments.parentElement.removeChild($viewComments);
+        document.getElementById('fixed-buttons').appendChild($viewComments);
       }
 
       var $fixedButtons = document.getElementById('fixed-buttons');
       var ACCURACY = 20,
           MINIMUM = 100;
       window.addEventListener('scroll', function () {
-        _this12.newScrollTop = _this12.util.getScrollTop();
-        var scroll = _this12.newScrollTop - _this12.oldScrollTop;
-
-        var isMobile = _this12.util.isMobile();
-
-        _this12.util.forEach($headers, function ($header) {
+        _this11.newScrollTop = Util.getScrollTop();
+        var scroll = _this11.newScrollTop - _this11.oldScrollTop;
+        var isMobile = Util.isMobile();
+        Util.forEach($headers, function ($header) {
           if (scroll > ACCURACY) {
             $header.classList.remove('animate__fadeInDown');
-
-            _this12.util.animateCSS($header, ['animate__fadeOutUp', 'animate__faster'], true);
+            Util.animateCSS($header, ['animate__fadeOutUp', 'animate__faster'], true);
           } else if (scroll < -ACCURACY) {
             $header.classList.remove('animate__fadeOutUp');
-
-            _this12.util.animateCSS($header, ['animate__fadeInDown', 'animate__faster'], true);
+            Util.animateCSS($header, ['animate__fadeInDown', 'animate__faster'], true);
           }
         });
 
-        if (_this12.newScrollTop > MINIMUM) {
+        if (_this11.newScrollTop > MINIMUM) {
           if (isMobile && scroll > ACCURACY) {
             $fixedButtons.classList.remove('animate__fadeIn');
-
-            _this12.util.animateCSS($fixedButtons, ['animate__fadeOut', 'animate__faster'], true);
+            Util.animateCSS($fixedButtons, ['animate__fadeOut', 'animate__faster'], true);
           } else if (!isMobile || scroll < -ACCURACY) {
             $fixedButtons.style.display = 'block';
             $fixedButtons.classList.remove('animate__fadeOut');
-
-            _this12.util.animateCSS($fixedButtons, ['animate__fadeIn', 'animate__faster'], true);
+            Util.animateCSS($fixedButtons, ['animate__fadeIn', 'animate__faster'], true);
           }
         } else {
           if (!isMobile) {
             $fixedButtons.classList.remove('animate__fadeIn');
-
-            _this12.util.animateCSS($fixedButtons, ['animate__fadeOut', 'animate__faster'], true);
+            Util.animateCSS($fixedButtons, ['animate__fadeOut', 'animate__faster'], true);
           }
 
           $fixedButtons.style.display = 'none';
         }
 
-        var _iterator2 = _createForOfIteratorHelper(_this12.scrollEventSet),
+        var _iterator2 = _createForOfIteratorHelper(_this11.scrollEventSet),
             _step2;
 
         try {
@@ -980,20 +951,20 @@ var Theme = /*#__PURE__*/function () {
           _iterator2.f();
         }
 
-        _this12.oldScrollTop = _this12.newScrollTop;
+        _this11.oldScrollTop = _this11.newScrollTop;
       }, false);
     }
   }, {
     key: "onResize",
     value: function onResize() {
-      var _this13 = this;
+      var _this12 = this;
 
       window.addEventListener('resize', function () {
-        if (!_this13._resizeTimeout) {
-          _this13._resizeTimeout = window.setTimeout(function () {
-            _this13._resizeTimeout = null;
+        if (!_this12._resizeTimeout) {
+          _this12._resizeTimeout = window.setTimeout(function () {
+            _this12._resizeTimeout = null;
 
-            var _iterator3 = _createForOfIteratorHelper(_this13.resizeEventSet),
+            var _iterator3 = _createForOfIteratorHelper(_this12.resizeEventSet),
                 _step3;
 
             try {
@@ -1007,11 +978,11 @@ var Theme = /*#__PURE__*/function () {
               _iterator3.f();
             }
 
-            _this13.initToc();
+            _this12.initToc();
 
-            _this13.initMermaid();
+            _this12.initMermaid();
 
-            _this13.initSearch();
+            _this12.initSearch();
           }, 100);
         }
       }, false);
@@ -1019,10 +990,10 @@ var Theme = /*#__PURE__*/function () {
   }, {
     key: "onClickMask",
     value: function onClickMask() {
-      var _this14 = this;
+      var _this13 = this;
 
       document.getElementById('mask').addEventListener('click', function () {
-        var _iterator4 = _createForOfIteratorHelper(_this14.clickMaskEventSet),
+        var _iterator4 = _createForOfIteratorHelper(_this13.clickMaskEventSet),
             _step4;
 
         try {
@@ -1042,7 +1013,7 @@ var Theme = /*#__PURE__*/function () {
   }, {
     key: "init",
     value: function init() {
-      var _this15 = this;
+      var _this14 = this;
 
       try {
         this.initRaw();
@@ -1054,7 +1025,6 @@ var Theme = /*#__PURE__*/function () {
         this.initDetails();
         this.initLightGallery();
         this.initHighlight();
-        this.initTable();
         this.initHeaderLink();
         this.initMath();
         this.initMermaid();
@@ -1067,15 +1037,15 @@ var Theme = /*#__PURE__*/function () {
       }
 
       window.setTimeout(function () {
-        _this15.initToc();
+        _this14.initToc();
 
-        _this15.initComment();
+        _this14.initComment();
 
-        _this15.onScroll();
+        _this14.onScroll();
 
-        _this15.onResize();
+        _this14.onResize();
 
-        _this15.onClickMask();
+        _this14.onClickMask();
       }, 100);
     }
   }]);
