@@ -29,7 +29,11 @@ title: "Employment History"
     </div>
 </div>
 <br/>
+
 <h1 style="font-size: 1.6rem;" class="animate__animated animate__pulse animate__faster">OpenSource Contributions</h1>
+2025/04/06 <a href="https://www.librenms.org/" target="_blank">LibreNMS</a>
+(<a href="https://github.com/librenms/librenms/commit/beb356073d30fac74e928dac96ffa4a9d63036c6" target="_blank">beb3560</a>)
+- Add support for Grandstream GWN7822P Switch<br/>
 2023/05/28 <a href="https://opnsense.org/" target="_blank">OpnSense</a>
 (<a href="https://github.com/opnsense/core/commit/25e2c0a301e1437a98c8958637ca405a5fab21fa" target="_blank">25e2c0a</a>)
 - Resolving static routes being created for on far gateways<br/>
