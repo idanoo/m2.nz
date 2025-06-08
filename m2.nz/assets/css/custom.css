@@ -4,5 +4,8 @@
 
 .link-quic {
   background-color: #e5490b;
-  /* background-color: #444444; */
+}
+
+.link-peertube {
+  background-color: #f1680d;
 }
