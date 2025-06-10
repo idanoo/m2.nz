@@ -59,7 +59,7 @@ disableKinds = ["taxonomy", "term"]
     # { whatsapp = "https://wa.me/phone-number" },
     # { x = "https://x.com/username" },
     # { youtube = "https://youtube.com/username" },
-    { quic = { href = "https://account.quic.nz/refer/19099", text = "Quic Broadband" } },
+    { quic = { href = "https://account.quic.nz/index.php?m=refer&id=19099", text = "Quic Broadband" } },
   ]
 
 [module]
