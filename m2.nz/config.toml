@@ -10,7 +10,7 @@ disableKinds = ["taxonomy", "term"]
 
 [params.author]
   name = "Daniel Mason"
-  headline = "Snr Site Reliability Engineer | Pilot"
+  headline = "<i>idanoo</i><br/>Snr Site Reliability Engineer | Pilot"
   image = "img/dp.jpg"  # path relative to static directory
 
   links = [
