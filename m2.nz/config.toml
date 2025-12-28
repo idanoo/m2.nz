@@ -52,7 +52,7 @@ disableKinds = ["taxonomy", "term"]
     # { telegram = "https://t.me/username" },
     # { threads = "https://threads.com/username" },
     { peertube = { href = "https://peertube.m2.nz", text = "PeerTube" } },
-    { tiktok = "https://tiktok.com/@idanoo_nz" },
+    # { tiktok = "https://tiktok.com/@username" },
     # { tumblr = "https://username.tumblr.com" },
     # { twitch = "https://twitch.tv/username" },
     # { twitter = "https://twitter.com/username" },
